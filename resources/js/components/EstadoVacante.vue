@@ -4,7 +4,7 @@
         :class="claseEstadoVacante()"
         @click="cambiarEstado"
         :key="estadoVacanteData"
-    >
+    ><!-- para que el :key aqui? -->
        {{ estadoVacante }}
     </span>
 </template>
@@ -17,7 +17,7 @@ export default {
     },
     data: function() {
         return {
-            estadoVacanteData: null
+            estadoVacanteData: null // 0 1
         }
     },
     methods: {

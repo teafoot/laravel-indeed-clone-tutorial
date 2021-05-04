@@ -19,13 +19,9 @@ class VacanteController extends Controller
      */
     public function index()
     {
-
         // $vacantes = auth()->user()->vacantes;
-
-        $vacantes = Vacante::where('user_id', auth()->user()->id )->simplePaginate(10);
-
+        $vacantes = Vacante::where('user_id', auth()->user()->id )->latest()->simplePaginate(10); // simplePaginate no viene con estilos bootstrap
         // dd($vacantes);
-
 
         return view('vacantes.index', compact('vacantes'));
     }
@@ -96,6 +92,7 @@ class VacanteController extends Controller
     public function show(Vacante $vacante)
     {
         //
+        // if($vacante->activa === 0) return abort(404);
 
         return view('vacantes.show')->with('vacante', $vacante);
     }
@@ -108,8 +105,7 @@ class VacanteController extends Controller
      */
     public function edit(Vacante $vacante)
     {
-        $this->authorize('view', $vacante);
-
+        $this->authorize('view', $vacante); // solo el usuario autenticado que creo esta vacante tiene permiso
 
         // Consultas
         $categorias = Categoria::all();
@@ -117,8 +113,6 @@ class VacanteController extends Controller
         $ubicaciones = Ubicacion::all();
         $salarios = Salario::all();
 
-
-        //
         return view('vacantes.edit')
                     ->with('categorias', $categorias)
                     ->with('experiencias', $experiencias)
@@ -136,8 +130,7 @@ class VacanteController extends Controller
      */
     public function update(Request $request, Vacante $vacante)
     {
-        //
-        $this->authorize('update', $vacante);
+        $this->authorize('update', $vacante); // solo el usuario autenticado que creo esta vacante tiene permiso
 
         // dd($request->all());
         // Validación
@@ -152,10 +145,11 @@ class VacanteController extends Controller
             'skills' => 'required'
         ]);
 
+        // Actualizar modelo
         $vacante->titulo = $data['titulo'];
-        $vacante->skills = $data['skills'];
         $vacante->imagen = $data['imagen'];
         $vacante->descripcion = $data['descripcion'];
+        $vacante->skills = $data['skills'];
         $vacante->categoria_id = $data['categoria'];
         $vacante->experiencia_id = $data['experiencia'];
         $vacante->ubicacion_id = $data['ubicacion'];
@@ -165,8 +159,6 @@ class VacanteController extends Controller
 
         // redireccionar
         return redirect()->action('VacanteController@index');
-
-
     }
 
     /**
@@ -177,7 +169,7 @@ class VacanteController extends Controller
      */
     public function destroy(Vacante $vacante, Request $request)
     {
-        $this->authorize('delete', $vacante);
+        $this->authorize('delete', $vacante); // solo el usuario autenticado que creo esta vacante tiene permiso
 
         // return response()->json($vacante);
         // return response()->json($request);
@@ -185,22 +177,22 @@ class VacanteController extends Controller
         $vacante->delete();
 
         return response()->json(['mensaje' => 'Se eliminó la vacante ' . $vacante->titulo]);
-
-        //
     }
 
 
 
     // Campos extras
+    // Subir imagen con dropzone
     public function imagen(Request $request)
     {
         $imagen = $request->file('file');
-        $nombreImagen = time() . '.' . $imagen->extension();
-        $imagen->move(public_path('storage/vacantes'), $nombreImagen );
+        $nombreImagen = time() . '.' . $imagen->extension(); // nombre unico
+
+        $imagen->move(public_path('storage/vacantes'), $nombreImagen ); // guardar en disco
         return response()->json(['correcto' => $nombreImagen]);
     }
 
-    // Borrar imagen via Ajax
+    // Borrar imagen via Ajax (dropzone)
     public function borrarimagen(Request $request)
     {
         if($request->ajax()) {
@@ -215,11 +207,10 @@ class VacanteController extends Controller
     }
 
     // Cambia el estado de una vacante
-    public function estado(Request $request, Vacante $vacante)
+    public function estado(Request $request, Vacante $vacante) // request body, url query string
     {
         // Leer nuevo estado y asignarlo
-        $vacante->activa = $request->estado;
-
+        $vacante->activa = $request->estado; // param de axios
         // guardarlo en la BD
         $vacante->save();
 
@@ -229,7 +220,6 @@ class VacanteController extends Controller
 
     public function buscar(Request $request)
     {
-
         // validar
         $data = $request->validate([
             'categoria' => 'required',
@@ -240,10 +230,9 @@ class VacanteController extends Controller
         $categoria = $data['categoria'];
         $ubicacion = $data['ubicacion'];
 
-
-       $vacantes = Vacante::latest()
+        $vacantes = Vacante::latest()
            ->where('categoria_id', $categoria)
-           ->where('ubicacion_id', $ubicacion)
+           ->where('ubicacion_id', $ubicacion) // AND
            ->get();
 
         // $vacantes = Vacante::where([

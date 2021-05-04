@@ -29,7 +29,6 @@
         </div>
     @endif
 
-
     <div id="app">
         <nav class="bg-gray-800 shadow-md py-6">
             <div class="container mx-auto md:px-0">
@@ -47,6 +46,7 @@
                             @else
                                     <span class="text-gray-300 text-sm pr-4"> {{ Auth::user()->name }}  </span>
 
+                                    {{-- Notificaciones --}}
                                     <a
                                         href="{{ route('notificaciones') }}"
                                         class="bg-teal-500 rounded-full mr-2 px-3 py-1 font-bold text-sm text-white"
@@ -67,6 +67,7 @@
             </div>
         </nav>
 
+        {{-- para mostrar menu categorias --}}
         <div class="bg-gray-700">
             <nav class="container mx-auto flex flex-col text-center md:flex-row  space-x-1">
                 @yield('navegacion')

@@ -15,25 +15,17 @@ class CandidatoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request) // candidatos de la vacante
     {
-
-
-
         // Obtener el ID actual
         // dd( $request->route('id')  );
-
         $id_vacante = $request->route('id');
-
         // Obtener los candidatos y la vacante
         $vacante = Vacante::findOrFail( $id_vacante );
-
-        $this->authorize('view', $vacante );
-
+        $this->authorize('view', $vacante ); // solo owner vacante logeado puede ver los candidatos pertenecientes
         // dd($vacante);
 
         return view('candidatos.index', compact('vacante'));
-
     }
 
     /**
@@ -54,7 +46,6 @@ class CandidatoController extends Controller
      */
     public function store(Request $request )
     {
-
         // validacion
         $data = $request->validate([
             'nombre' => 'required',
@@ -67,11 +58,10 @@ class CandidatoController extends Controller
         if($request->file('cv'))
         {
             $archivo = $request->file('cv');
-            $nombreArchivo = time() . "." . $request->file('cv')->extension();
             $ubicacion = public_path('/storage/cv');
+            $nombreArchivo = time() . "." . $request->file('cv')->extension();
             $archivo->move($ubicacion, $nombreArchivo);
         }
-
 
         $vacante = Vacante::find($data['vacante_id']);
 
@@ -81,10 +71,11 @@ class CandidatoController extends Controller
             'cv' => $nombreArchivo
         ]);
 
+        // enviar notificacion (email) al reclutador (user)
         $reclutador = $vacante->reclutador;
-        $reclutador->notify( new NuevoCandidato( $vacante->titulo, $vacante->id ) );
+        $reclutador->notify( new NuevoCandidato( $vacante->titulo, $vacante->id ) ); // pasar al constructor
 
-        return back()->with('estado', 'Tus datos se enviaron Correctamente! Suerte');
+        return back()->with('estado', 'Tus datos se enviaron Correctamente! Suerte'); // session flash message -> show.blade.php/app.blade.php
     }
 
     /**

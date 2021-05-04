@@ -30,7 +30,7 @@
             <input 
                 id="titulo" 
                 type="text" 
-                class="p-3 bg-gray-100 rounded form-input w-full  @error('password') is-invalid @enderror" 
+                class="p-3 bg-gray-100 rounded form-input w-full  @error('password') is-invalid @enderror" {{-- el @error esta mal aqui --}}
                 name="titulo"
                 placeholder="Titulo de la vacante"
                 value="{{ old('titulo') }}"
@@ -171,6 +171,7 @@
                     </option>
                 @endforeach
             </select>
+
             @error('salario')
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
                     <strong class="font-bold">Error!</strong>
@@ -185,9 +186,10 @@
                 class="block text-gray-700 text-sm mb-2"
             >Descripción del Puesto:</label>
 
+            {{-- Medium editor --}}
             <div class="editable p-3 bg-gray-100 rounded form-input w-full text-gray-700 "></div>
-
             <input type="hidden" name="descripcion" id="descripcion" value="{{ old('descripcion') }} " >
+
             @error('descripcion')
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
                     <strong class="font-bold">Error!</strong>
@@ -198,13 +200,14 @@
 
         <div class="mb-5">
             <label 
-                for="descripcion" 
+                for="imagen" 
                 class="block text-gray-700 text-sm mb-2"
             >Imagen Vacante:</label>
 
+            {{-- Dropzone.js via ajax --}}
             <div id="dropzoneDevJobs" class="dropzone rounded bg-gray-100"></div>
-
             <input type="hidden" name="imagen" id="imagen" value="{{ old('imagen') }}" >
+
             @error('imagen')
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
                     <strong class="font-bold">Error!</strong>
@@ -218,14 +221,18 @@
             <label 
                 for="skills" 
                 class="block text-gray-700 text-sm mb-5"
-            >Habilidades y Conocimientos: <span class="text-xs">(Elige al menos 3)</span> </label>
+            >Habilidades y Conocimientos: <span class="text-xs">(Elige al menos 3)</span></label>
 
             @php
                 $skills = ['HTML5', 'CSS3', 'CSSGrid', 'Flexbox', 'JavaScript', 'jQuery', 'Node', 'Angular', 'VueJS', 'ReactJS', 'React Hooks', 'Redux', 'Apollo', 'GraphQL', 'TypeScript', 'PHP', 'Laravel', 'Symfony', 'Python', 'Django', 'ORM', 'Sequelize', 'Mongoose', 'SQL', 'MVC', 'SASS', 'WordPress', 'Express', 'Deno', 'React Native', 'Flutter', 'MobX', 'C#', 'Ruby on Rails']
             @endphp
             <lista-skills
+                {{-- json_encode = string --}}
+                {{-- con : significa array --}}
+                {{-- sin : significa string --}}
                 :skills="{{ json_encode($skills) }}"
-                :oldskills="{{ json_encode( old('skills') ) }}"
+                :oldskills="{{ json_encode( old('skills') ) }}" {{-- <input type="hidden" name="skills" id="skills"> --}}
+                {{-- old selected skills --}}
             ></lista-skills>
 
             @error('skills')
@@ -247,16 +254,13 @@
 
 
 @section('scripts')
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/js/medium-editor.min.js" integrity="sha256-R0a97wz9RimQA9BJEMqcwuOckEMhIQcdtij32P5WpuI=" crossorigin="anonymous"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/dropzone.min.js" integrity="sha256-OG/103wXh6XINV06JTPspzNgKNa/jnP1LjPP5Y3XQDY=" crossorigin="anonymous"></script>
 
     <script>
-
-        Dropzone.autoDiscover = false;
+        Dropzone.autoDiscover = false; // don't scan DOM for .dropzone, instead create config and then attach it to element
 
         document.addEventListener('DOMContentLoaded', () => {
-
             // Medium Editor
             const editor = new MediumEditor('.editable', {
                 toolbar : {
@@ -268,32 +272,30 @@
                     text: 'Información de la vacante'
                 }
             });
-
             // Agrega al input hidden lo que el usuario escribe en medium editor
             editor.subscribe('editableInput', function(eventObj, editable) {
-                const contenido = editor.getContent();
+                const contenido = editor.getContent(); // ets the trimmed innerHTML of the element
                 document.querySelector('#descripcion').value = contenido;
             })
-
-            // Llena el editor con el contenido del input hidden
+            // Llena el editor con el contenido del input hidden old (usado cuando hay error de validacion)
             editor.setContent( document.querySelector('#descripcion').value );
 
-            // Dropzone
+            // Dropzone (para subir/eliminar imagen)
             const dropzoneDevJobs = new Dropzone('#dropzoneDevJobs', {
-                url: "/vacantes/imagen",
+                url: "/vacantes/imagen", // POST
                 dictDefaultMessage: 'Sube aquí tu archivo',
                 acceptedFiles: ".png,.jpg,.jpeg,.gif,.bmp",
-                addRemoveLinks: true,
+                addRemoveLinks: true, // to remove uploaded file in UI
                 dictRemoveFile: 'Borrar Archivo',
                 maxFiles: 1,
                 headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+                    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content // para evitar el error de expiracion
                 },
-                init: function() {
-                    if(document.querySelector('#imagen').value.trim() ) {
+                init: function() { // para cuando falla la validacion del servidor required de la imagen -> se mantiene la imagen en el dropzone
+                    if(document.querySelector('#imagen').value.trim() ) { // existe el nombre de la imagen old
                        let imagenPublicada = {};
-                       imagenPublicada.size = 1234;
                        imagenPublicada.name = document.querySelector('#imagen').value;
+                       imagenPublicada.size = 1234; // requerido
                        
                        this.options.addedfile.call(this, imagenPublicada);
                        this.options.thumbnail.call(this, imagenPublicada, `/storage/vacantes/${imagenPublicada.name}`);
@@ -303,37 +305,37 @@
                     } 
                 },
                 success: function(file, response) {
-                    // console.log(file);
-                    // console.log(response);
-                    console.log(response.correcto);
+                    // console.log(file); // informacion del archivo subido
+                    // console.log(response); // response del API (VacanteController)
+
                     document.querySelector('#error').textContent = '';
+                    console.log(response.correcto); // nombre de la imagen
+                    document.querySelector('#imagen').value = response.correcto; // Coloca la respuesta del servidor (nombre de la imagen) en el input hidden
 
-                    // Coloca la respuesta del servidor en el input hidden
-                    document.querySelector('#imagen').value = response.correcto;
-
-                    // Añadir al objeto de archivo el nombre del servidor
+                    // Añadir al objeto de archivo el nombre de la imagen del servidor (para poder eliminar el archivo)
                     file.nombreServidor = response.correcto;
                 },
+                // error: function (file, response) { // e.g. si subimos archivos con otras extensiones (.pdf)
+                    // console.log(file);
+                    // console.log(response);
+                    // document.querySelector('#error').textContent = 'Formato no valido';
+                // },
                 maxfilesexceeded: function(file) {
-                    if( this.files[1] != null ) {
-                        this.removeFile(this.files[0]); // eliminar el archivo anterior
+                    if( this.files[1] != null ) { // segundo archivo
+                        this.removeFile(this.files[0]); // eliminar el archivo anterior y llama a removedfile event
                         this.addFile(file); // Agregar el nuevo archivo 
                     }
                 }, 
                 removedfile: function(file, response) {
-                    file.previewElement.parentNode.removeChild(file.previewElement);
+                    file.previewElement.parentNode.removeChild(file.previewElement); // para eliminar el preview del DOM
 
                     params = {
-                        imagen: file.nombreServidor ?? document.querySelector('#imagen').value
+                        imagen: file.nombreServidor ?? document.querySelector('#imagen').value // toma el segundo valor cuando falla la validacion del servidor required de la imagen -> se mantiene la imagen old en el dropzone -> usuario elimina la imagen del dropzone
                     }
-
-                    axios.post('/vacantes/borrarimagen', params )
+                    axios.post('/vacantes/borrarimagen', params ) // eliminar la imagen del servidor ; formato ajax (objeto javascript)
                         .then(respuesta => console.log(respuesta))
                 }
             });
-
         })
     </script>
-    
-
 @endsection

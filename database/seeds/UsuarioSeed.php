@@ -17,7 +17,7 @@ class UsuarioSeed extends Seeder
         DB::table('users')->insert([
             'name' => 'Juan',
             'email' => 'correo@correo.com',
-            'email_verified_at' => Carbon::now(),
+            'email_verified_at' => Carbon::now(), // protegido
             'password' => Hash::make('12345678'),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
@@ -25,7 +25,7 @@ class UsuarioSeed extends Seeder
         DB::table('users')->insert([
             'name' => 'Pablo',
             'email' => 'correo2@correo.com',
-            'email_verified_at' => Carbon::now(),
+            'email_verified_at' => Carbon::now(), // protegido
             'password' => Hash::make('12345678'),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

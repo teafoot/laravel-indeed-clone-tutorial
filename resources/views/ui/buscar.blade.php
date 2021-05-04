@@ -1,5 +1,6 @@
 <h2 class="my-10 text-2xl text-gray-700">Busca una vacante</h2>
 
+{{-- busqueda por categorio (tipo de trabajo) y ubicacion --}}
 <form
     action={{ route('vacantes.buscar')}}
     method="POST"
@@ -22,6 +23,7 @@
         >
             <option disabled selected>- Selecciona -</option>
 
+            {{-- service provider --}}
             @foreach ($categorias as $categoria)
                 <option
                     {{ old('categoria') == $categoria->id ? 'selected' : '' }}
@@ -81,5 +83,4 @@
     >
         Buscar Vacantes
     </button>
-
 </form>

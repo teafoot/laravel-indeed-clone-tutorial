@@ -16,7 +16,7 @@ class NuevoCandidato extends Notification
      *
      * @return void
      */
-    public function __construct($vacante, $id_vacante)
+    public function __construct($vacante, $id_vacante) // titulo y id
     {
         $this->vacante = $vacante;
         $this->id_vacante = $id_vacante;
@@ -39,7 +39,7 @@ class NuevoCandidato extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
+    public function toMail($notifiable) // estamos usando mailtrap
     {
         return (new MailMessage)
                     ->line('Has recibido un nuevo candidato en tu vacante.')
@@ -49,9 +49,9 @@ class NuevoCandidato extends Notification
     }
 
     // notificaciones en la BD
-    public function toDatabase($notifiable)
+    public function toDatabase($notifiable) // estamos usando notifications migration
     {
-        return [
+        return [ // se almacena en la columna data como un objeto json string
             'vacante' => $this->vacante,
             'id_vacante' => $this->id_vacante
         ];

@@ -16,10 +16,9 @@ class InicioController extends Controller
      */
     public function __invoke(Request $request)
     {
-        //
-
         $vacantes = Vacante::latest()->where('activa', true)->take(10)->get();
         $ubicaciones = Ubicacion::all();
+        // $categories - viene del service provider (menu y search box)
 
         return view('inicio.index', compact('vacantes', 'ubicaciones'));
     }

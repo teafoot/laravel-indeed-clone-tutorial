@@ -4,6 +4,7 @@
     @include('ui.adminnav')
 @endsection
 
+{{-- Candidatos de la vacante --}}
 @section('content')
     <h1 class="text-2xl text-center mt-10">Candidatos: {{$vacante->titulo}} </h1>
 
@@ -18,12 +19,10 @@
                         <span class="font-bold"> {{$candidato->email}}</span>
                     </p>
                     <a class="bg-teal-500 p-3 inline-block text-xs font-bold uppercase text-white" href="/storage/cv/{{$candidato->cv}}">Ver CV</a>
-
                 </li>
             @endforeach
         </ul>
     @else
         <p class="text-center mt-5">No hay candidatos</p>
     @endif
-
 @endsection

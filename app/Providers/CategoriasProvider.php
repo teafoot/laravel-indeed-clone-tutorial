@@ -25,7 +25,7 @@ class CategoriasProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // pasar todas las categorias hacia todos los views (e.g. frontend) para mostrar en menu de navegacion
         View::composer('*', function($view) {
             $categorias = Categoria::all();
             $view->with('categorias', $categorias);

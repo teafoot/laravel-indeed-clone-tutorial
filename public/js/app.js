@@ -1933,17 +1933,19 @@ __webpack_require__.r(__webpack_exports__);
         cancelButtonText: 'No'
       }).then(function (result) {
         if (result.value) {
+          // Enviar petición a axios
           var params = {
             id: _this.vacanteId,
             _method: 'delete'
-          }; // Enviar petición a axios
-
+          };
           axios.post("/vacantes/".concat(_this.vacanteId), params).then(function (respuesta) {
             // console.log(respuesta)
-            _this.$swal.fire('Vacante Eliminada', respuesta.data.mensaje, 'success'); // Eliminar del DOM
+            _this.$swal.fire('Vacante Eliminada', respuesta.data.mensaje, // del servidor
+            'success'); // Eliminar del DOM
 
 
-            _this.$el.parentNode.parentNode.parentNode.removeChild(_this.$el.parentNode.parentNode);
+            _this.$el.parentNode.parentNode.parentNode.removeChild(_this.$el.parentNode.parentNode); // this.$el se refiere al boton ; se elimina el <tr> en este ejemplo
+
           })["catch"](function (error) {
             console.log(error);
           });
@@ -1982,7 +1984,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      estadoVacanteData: null
+      estadoVacanteData: null // 0 1
+
     };
   },
   methods: {
@@ -2053,40 +2056,41 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['skills', 'oldskills'],
   data: function data() {
     return {
-      habilidades: new Set()
+      habilidades: new Set() // arreglo con valores unicos (old selected skills)
+
     };
   },
   created: function created() {
     var _this = this;
 
+    // 1
     if (this.oldskills) {
-      var skillsArray = this.oldskills.split(',');
+      var skillsArray = this.oldskills.split(','); // no que ya es array?
+
       skillsArray.forEach(function (skill) {
         return _this.habilidades.add(skill);
       });
     }
   },
   mounted: function mounted() {
+    // 2
     document.querySelector('#skills').value = this.oldskills;
   },
   methods: {
     activar: function activar(e) {
+      // <li>
       if (e.target.classList.contains('bg-teal-400')) {
         // el skill esta en activo
-        e.target.classList.remove('bg-teal-400'); // Eliminar del set de habilidades
-
-        this.habilidades["delete"](e.target.textContent);
+        e.target.classList.remove('bg-teal-400');
+        this.habilidades["delete"](e.target.textContent); // Eliminar del set de habilidades
       } else {
         // No esta activo, añadirlo
-        e.target.classList.add('bg-teal-400'); // Agregar al set de habilidades
-
-        this.habilidades.add(e.target.textContent);
+        e.target.classList.add('bg-teal-400');
+        this.habilidades.add(e.target.textContent); // Agregar al set de habilidades
       } // agregar las habilidades al input hidden
 
 
@@ -2095,6 +2099,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       document.querySelector('#skills').value = stringHabilidades;
     },
     verificarClaseActiva: function verificarClaseActiva(skill) {
+      // pintar
       return this.habilidades.has(skill) ? 'bg-teal-400' : '';
     }
   }
@@ -54709,8 +54714,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/juandelatorre/Desktop/devjobs/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/juandelatorre/Desktop/devjobs/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\pedro\Desktop\DevProjects\LaravelProjects\6.juan-de-la-torre\curso-laravel-crea-aplicaciones-y-sitios-web-con-php-y-mvc\004 devjobs\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\pedro\Desktop\DevProjects\LaravelProjects\6.juan-de-la-torre\curso-laravel-crea-aplicaciones-y-sitios-web-con-php-y-mvc\004 devjobs\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

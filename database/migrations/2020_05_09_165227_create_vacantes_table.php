@@ -43,13 +43,13 @@ class CreateVacantesTable extends Migration
             $table->string('titulo');
             $table->string('imagen');
             $table->text('descripcion');
-            $table->text('skills');
-            $table->boolean('activa')->default(true);
-            $table->foreignId('categoria_id')->constrained()->onDelete('cascade');
-            $table->foreignId('experiencia_id')->constrained()->onDelete('cascade');
-            $table->foreignId('ubicacion_id')->constrained()->onDelete('cascade');
-            $table->foreignId('salario_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->text('skills'); // quemado?
+            $table->boolean('activa')->default(true); // visible o no visible
+            $table->foreignId('categoria_id')->constrained()->onDelete('cascade'); // categorias->id
+            $table->foreignId('experiencia_id')->constrained()->onDelete('cascade'); // experiencias->id
+            $table->foreignId('ubicacion_id')->constrained()->onDelete('cascade'); // ubicacions->id
+            $table->foreignId('salario_id')->constrained()->onDelete('cascade'); // salarios->id
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // users->id
             $table->timestamps();
         });
     }
@@ -62,8 +62,9 @@ class CreateVacantesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('vacantes');
-        Schema::dropIfExists('experiencias');
+        //
         Schema::dropIfExists('categorias');
+        Schema::dropIfExists('experiencias');
         Schema::dropIfExists('ubicacions');
         Schema::dropIfExists('salarios');
     }

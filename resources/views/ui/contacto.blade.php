@@ -69,6 +69,5 @@
             type="submit"
             class="bg-teal-600 w-full hover:bg-teal-700 text-gray-100 p-3 focus:outline-none focus:shadow-outline uppercase"
             value="Contactar">
-
     </form>
 </aside>
