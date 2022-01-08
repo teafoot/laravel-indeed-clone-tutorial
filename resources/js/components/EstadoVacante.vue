@@ -48,3 +48,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+span:hover {
+    cursor: pointer;
+}
+</style>

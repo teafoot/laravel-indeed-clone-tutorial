@@ -42,6 +42,8 @@
             @endforeach
             <a href="/storage/vacantes/{{$vacante->imagen}}" data-lightbox="imagen" data-title="Vacante {{ $vacante->titulo}} ">
                 <img src="/storage/vacantes/{{ $vacante->imagen }}" class="w-40 mt-10">
+                {{-- src="/storage/vacantes/1589309896.jpeg" --}}
+                {{-- src="http://127.0.0.1:8000/storage/vacantes/1589309896.jpeg" --}}
             </a>
             <div class="descripcion mt-10 mb-5">
                 {!! $vacante->descripcion  !!}

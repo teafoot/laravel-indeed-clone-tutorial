@@ -3,7 +3,6 @@
 @section('styles')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/css/medium-editor.min.css" integrity="sha256-R45gjjgTM82XinRpA4xKOL00zJ2/ajOSjY3tvw5JaDM=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/dropzone.min.css" integrity="sha256-NkyhTCRnLQ7iMv7F3TQWjVq25kLnjhbKEVPqGJBcCUg=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="{{ asset('css/lista-skills.css') }}" />
 @endsection
 
 
@@ -15,7 +14,7 @@
 @section('content')
     <h1 class="text-2xl text-center mt-10">Nueva Vacante</h1>
 
-    <form
+    <form 
         action="{{ route('vacantes.store') }}"
         method="POST"
         class="max-w-lg mx-auto my-10"
@@ -23,14 +22,14 @@
         @csrf
 
         <div class="mb-5">
-            <label
-                for="titulo"
+            <label 
+                for="titulo" 
                 class="block text-gray-700 text-sm mb-2"
             >Titulo Vacante:</label>
 
-            <input
-                id="titulo"
-                type="text"
+            <input 
+                id="titulo" 
+                type="text" 
                 class="p-3 bg-gray-100 rounded form-input w-full  @error('password') is-invalid @enderror" {{-- el @error esta mal aqui --}}
                 name="titulo"
                 placeholder="Titulo de la vacante"
@@ -46,15 +45,15 @@
         </div>
 
         <div class="mb-5">
-            <label
-                for="categoria"
+            <label 
+                for="categoria" 
                 class="block text-gray-700 text-sm mb-2"
             >Categoría:</label>
 
             <select
                 id="categoria"
-                class="block appearance-none w-full
-                        border border-gray-200 text-gray-700 rounded leading-tight
+                class="block appearance-none w-full 
+                        border border-gray-200 text-gray-700 rounded leading-tight 
                         focus:outline-none focus:bg-white focus:border-gray-500 p-3 bg-gray-100
                         w-full"
                 name="categoria"
@@ -62,7 +61,7 @@
                 <option disabled selected>- Selecciona -</option>
 
                 @foreach ($categorias as $categoria)
-                    <option
+                    <option 
                         {{ old('categoria') == $categoria->id ? 'selected' : '' }}
                         value="{{ $categoria->id }}"
                     >
@@ -80,15 +79,15 @@
         </div>
 
         <div class="mb-5">
-            <label
-                for="experiencia"
+            <label 
+                for="experiencia" 
                 class="block text-gray-700 text-sm mb-2"
             >Experiencia:</label>
 
             <select
                 id="experiencia"
-                class="block appearance-none w-full
-                        border border-gray-200 text-gray-700 rounded leading-tight
+                class="block appearance-none w-full 
+                        border border-gray-200 text-gray-700 rounded leading-tight 
                         focus:outline-none focus:bg-white focus:border-gray-500 p-3 bg-gray-100
                         w-full"
                 name="experiencia"
@@ -96,7 +95,7 @@
                 <option disabled selected>- Selecciona -</option>
 
                 @foreach ($experiencias as $experiencia)
-                    <option
+                    <option 
                         {{ old('experiencia') == $experiencia->id ? 'selected' : '' }}
                         value="{{ $experiencia->id }}"
                     >
@@ -114,15 +113,15 @@
         </div>
 
         <div class="mb-5">
-            <label
-                for="ubicacion"
+            <label 
+                for="ubicacion" 
                 class="block text-gray-700 text-sm mb-2"
             >Ubicación:</label>
 
             <select
                 id="ubicacion"
-                class="block appearance-none w-full
-                        border border-gray-200 text-gray-700 rounded leading-tight
+                class="block appearance-none w-full 
+                        border border-gray-200 text-gray-700 rounded leading-tight 
                         focus:outline-none focus:bg-white focus:border-gray-500 p-3 bg-gray-100
                         w-full"
                 name="ubicacion"
@@ -130,7 +129,7 @@
                 <option disabled selected>- Selecciona -</option>
 
                 @foreach ($ubicaciones as $ubicacion)
-                    <option
+                    <option 
                         {{ old('ubicacion') == $ubicacion->id ? 'selected' : '' }}
                         value="{{ $ubicacion->id }}"
                     >
@@ -148,15 +147,15 @@
         </div>
 
         <div class="mb-5">
-            <label
-                for="salario"
+            <label 
+                for="salario" 
                 class="block text-gray-700 text-sm mb-2"
             >Salario:</label>
 
             <select
                 id="salario"
-                class="block appearance-none w-full
-                        border border-gray-200 text-gray-700 rounded leading-tight
+                class="block appearance-none w-full 
+                        border border-gray-200 text-gray-700 rounded leading-tight 
                         focus:outline-none focus:bg-white focus:border-gray-500 p-3 bg-gray-100
                         w-full"
                 name="salario"
@@ -164,7 +163,7 @@
                 <option disabled selected>- Selecciona -</option>
 
                 @foreach ($salarios as $salario)
-                    <option
+                    <option 
                         {{ old('salario') == $salario->id ? 'selected' : '' }}
                         value="{{ $salario->id }}"
                     >
@@ -182,8 +181,8 @@
         </div>
 
         <div class="mb-5">
-            <label
-                for="descripcion"
+            <label 
+                for="descripcion" 
                 class="block text-gray-700 text-sm mb-2"
             >Descripción del Puesto:</label>
 
@@ -200,8 +199,8 @@
         </div>
 
         <div class="mb-5">
-            <label
-                for="imagen"
+            <label 
+                for="imagen" 
                 class="block text-gray-700 text-sm mb-2"
             >Imagen Vacante:</label>
 
@@ -219,25 +218,22 @@
         </div>
 
         <div class="mb-5">
-            <label
-                for="skills"
+            <label 
+                for="skills" 
                 class="block text-gray-700 text-sm mb-5"
             >Habilidades y Conocimientos: <span class="text-xs">(Elige al menos 3)</span></label>
 
             @php
                 $skills = ['HTML5', 'CSS3', 'CSSGrid', 'Flexbox', 'JavaScript', 'jQuery', 'Node', 'Angular', 'VueJS', 'ReactJS', 'React Hooks', 'Redux', 'Apollo', 'GraphQL', 'TypeScript', 'PHP', 'Laravel', 'Symfony', 'Python', 'Django', 'ORM', 'Sequelize', 'Mongoose', 'SQL', 'MVC', 'SASS', 'WordPress', 'Express', 'Deno', 'React Native', 'Flutter', 'MobX', 'C#', 'Ruby on Rails']
             @endphp
-            <div data-skills="{{ json_encode($skills) }}" data-old-skills="{{ json_encode( old('skills') ) }}">
-                <input type="hidden" name="skills" id="skills">
-            </div>
-            {{-- <lista-skills --}}
+            <lista-skills
                 {{-- json_encode = string --}}
                 {{-- con : significa array --}}
                 {{-- sin : significa string --}}
-                {{-- :skills="{{ json_encode($skills) }}" --}}
-                {{-- :oldskills="{{ json_encode( old('skills') ) }}" <input type="hidden" name="skills" id="skills"> --}}
+                :skills="{{ json_encode($skills) }}"
+                :oldskills="{{ json_encode( old('skills') ) }}" {{-- <input type="hidden" name="skills" id="skills"> --}}
                 {{-- old selected skills --}}
-            {{-- ></lista-skills> --}}
+            ></lista-skills>
 
             @error('skills')
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
@@ -247,7 +243,7 @@
             @enderror
         </div>
 
-        <button
+        <button 
             type="submit"
             class="bg-teal-500 w-full hover:bg-teal-600 text-gray-100 font-bold p-3 focus:outline focus:shadow-outline uppercase"
         >Publicar Vacante</button>
@@ -258,8 +254,9 @@
 
 
 @section('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/js/medium-editor.min.js" integrity="sha256-R0a97wz9RimQA9BJEMqcwuOckEMhIQcdtij32P5WpuI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/js/medium-editor.min.js" integrity="sha256-R0a97wz9RimQA9BJEMqcwuOckEMhIQcdtij32P5WpuI=" crossorigin="anonymous"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/dropzone.min.js" integrity="sha256-OG/103wXh6XINV06JTPspzNgKNa/jnP1LjPP5Y3XQDY=" crossorigin="anonymous"></script>
+
     <script>
         Dropzone.autoDiscover = false; // don't scan DOM for .dropzone, instead create config and then attach it to element
 
@@ -299,13 +296,13 @@
                        let imagenPublicada = {};
                        imagenPublicada.name = document.querySelector('#imagen').value;
                        imagenPublicada.size = 1234; // requerido
-
+                       
                        this.options.addedfile.call(this, imagenPublicada);
                        this.options.thumbnail.call(this, imagenPublicada, `/storage/vacantes/${imagenPublicada.name}`);
 
                        imagenPublicada.previewElement.classList.add('dz-sucess');
                        imagenPublicada.previewElement.classList.add('dz-complete');
-                    }
+                    } 
                 },
                 success: function(file, response) {
                     // console.log(file); // informacion del archivo subido
@@ -326,9 +323,9 @@
                 maxfilesexceeded: function(file) {
                     if( this.files[1] != null ) { // segundo archivo
                         this.removeFile(this.files[0]); // eliminar el archivo anterior y llama a removedfile event
-                        this.addFile(file); // Agregar el nuevo archivo
+                        this.addFile(file); // Agregar el nuevo archivo 
                     }
-                },
+                }, 
                 removedfile: function(file, response) {
                     file.previewElement.parentNode.removeChild(file.previewElement); // para eliminar el preview del DOM
 
@@ -341,5 +338,4 @@
             });
         })
     </script>
-    <script src="{{ asset('js/lista-skills.js') }}" defer></script>
 @endsection

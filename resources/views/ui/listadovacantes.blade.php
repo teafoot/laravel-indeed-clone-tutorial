@@ -22,3 +22,5 @@
         </li>
     @endforeach
 </ul>
+
+{{ $vacantes->render() }}

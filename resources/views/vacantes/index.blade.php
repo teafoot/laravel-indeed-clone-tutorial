@@ -1,5 +1,12 @@
 @extends ('layouts.app')
 
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/estado-vacante.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/eliminar-vacante.css') }}" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ asset('css/lista-vacantes-datatable.css') }}" />
+@endsection
+
 @section('navegacion')
     @include('ui.adminnav')
 @endsection
@@ -11,7 +18,7 @@
         <div class="flex flex-col mt-10">
             <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
                 <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
-                    <table class="min-w-full">
+                    <table id="lista-vacantes" class="min-w-full">
                         <thead class="bg-gray-100 ">
                             <tr>
                                 <th class="px-6 py-3 border-b border-gray-200  text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
@@ -41,10 +48,13 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                         {{-- click para cambiar estado activo <=> inactivo --}}
-                                        <estado-vacante
+                                        <div id="vacante-{{$vacante->id}}" data-estado="{{$vacante->activa}}">
+                                            {{$vacante->activa}}
+                                        </div>
+                                        {{-- <estado-vacante
                                             estado="{{$vacante->activa}}"
                                             vacante-id="{{$vacante->id}}"
-                                        ></estado-vacante>
+                                        ></estado-vacante> --}}
                                     </td>
                                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
                                         {{-- Ver los candidatos de la vacante --}}
@@ -54,16 +64,19 @@
                                         > {{ $vacante->candidatos->count() }}   Candidatos</a>
                                     </td>
                                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium">
+                                        <a href=" {{route('vacantes.show', ['vacante' => $vacante->id])}} " class="text-blue-600 hover:text-blue-900 mr-5">Ver</a>
+
                                         <a
                                             href="{{route('vacantes.edit', ['vacante' => $vacante->id ]) }}"
                                             class="text-teal-600 hover:text-teal-900 mr-5"
                                         >Editar</a>
 
-                                        <eliminar-vacante
+                                        <div data-eliminar-vacante-id="vacante-{{$vacante->id}}" class="text-red-600 hover:text-red-900">
+                                            Eliminar
+                                        </div>
+                                        {{-- <eliminar-vacante
                                             vacante-id="{{$vacante->id}} "
-                                        ></eliminar-vacante>
-
-                                        <a href=" {{route('vacantes.show', ['vacante' => $vacante->id])}} " class="text-blue-600 hover:text-blue-900">Ver</a>
+                                        ></eliminar-vacante> --}}
                                     </td>
                                 </tr>
                             @endforeach
@@ -73,8 +86,18 @@
             </div>
         </div>
 
-        {{$vacantes->links() }}
+        {{-- simple paginate laravel --}}
+        {{-- {{$vacantes->links() }}  --}}
     @else
         <p class="text-center mt-10 text-gray-700">No tienes vacantes aún</p>
     @endif
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('js/estado-vacante.js') }}" defer></script>
+    <script src="{{ asset('js/eliminar-vacante.js') }}" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js" defer></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js" defer></script>
+    <script src="{{ asset('js/lista-vacantes-datatable.js') }}" defer></script>
 @endsection

@@ -1,4 +1,14 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/css/menu.css": "/css/menu.css",
+    "/css/estado-vacante.css": "/css/estado-vacante.css",
+    "/css/eliminar-vacante.css": "/css/eliminar-vacante.css",
+    "/css/lista-skills.css": "/css/lista-skills.css",
+    "/css/lista-vacantes-datatable.css": "/css/lista-vacantes-datatable.css",
+    "/js/eliminar-vacante.js": "/js/eliminar-vacante.js",
+    "/js/estado-vacante.js": "/js/estado-vacante.js",
+    "/js/lista-skills.js": "/js/lista-skills.js",
+    "/js/lista-vacantes-datatable.js": "/js/lista-vacantes-datatable.js",
+    "/js/menu.js": "/js/menu.js"
 }

@@ -23,13 +23,13 @@
         <div class="block lg:w-1/2">
             <img class="inset-0 h-full w-full object-cover object-center" src="{{ asset('img/4321.jpg')}}" alt="devjobs">
             {{-- public/img/4321.jpg --}}
+            {{-- src="http://127.0.0.1:8000/img/4321.jpg" --}}
         </div>
     </div>
 
     <div class="my-10 bg-gray-100 p-10 shadow">
-        <h1 class="text-3xl text-gray-700 m-0">
-            Nuevas
-            <span class="font-bold">Vacantes</span>
+        <h1 class="text-center text-3xl text-gray-700 m-0">
+            Todas las <span class="font-bold">Vacantes</span>
         </h1>
 
         @include('ui.listadovacantes')

@@ -1899,126 +1899,6 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EliminarVacante.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/EliminarVacante.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['vacanteId'],
-  methods: {
-    eliminarVacante: function eliminarVacante() {
-      var _this = this;
-
-      // console.log('eliminando...', this.vacanteId)
-      this.$swal.fire({
-        title: '¿Deseas eliminar esta vacante?',
-        text: "Una vez eliminada no se puede recuperar!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si',
-        cancelButtonText: 'No'
-      }).then(function (result) {
-        if (result.value) {
-          // Enviar petición a axios
-          var params = {
-            id: _this.vacanteId,
-            _method: 'delete'
-          };
-          axios.post("/vacantes/".concat(_this.vacanteId), params).then(function (respuesta) {
-            // console.log(respuesta)
-            _this.$swal.fire('Vacante Eliminada', respuesta.data.mensaje, // del servidor
-            'success'); // Eliminar del DOM
-
-
-            _this.$el.parentNode.parentNode.parentNode.removeChild(_this.$el.parentNode.parentNode); // this.$el se refiere al boton ; se elimina el <tr> en este ejemplo
-
-          })["catch"](function (error) {
-            console.log(error);
-          });
-        }
-      });
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EstadoVacante.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/EstadoVacante.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['estado', 'vacanteId'],
-  mounted: function mounted() {
-    this.estadoVacanteData = Number(this.estado);
-  },
-  data: function data() {
-    return {
-      estadoVacanteData: null // 0 1
-
-    };
-  },
-  methods: {
-    claseEstadoVacante: function claseEstadoVacante() {
-      return this.estadoVacanteData === 1 ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800";
-    },
-    cambiarEstado: function cambiarEstado() {
-      if (this.estadoVacanteData === 1) {
-        this.estadoVacanteData = 0;
-      } else {
-        this.estadoVacanteData = 1;
-      } // Enviar a axios
-
-
-      var params = {
-        estado: this.estadoVacanteData
-      };
-      axios.post('/vacantes/' + this.vacanteId, params).then(function (respuesta) {
-        return console.log(respuesta);
-      })["catch"](function (error) {
-        return console.log(error);
-      });
-    }
-  },
-  computed: {
-    estadoVacante: function estadoVacante() {
-      return this.estadoVacanteData === 1 ? 'Activa' : 'Inactiva';
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ListaSkills.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ListaSkills.vue?vue&type=script&lang=js& ***!
@@ -6639,9 +6519,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 /***/ }),
 
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/sweetalert2/dist/sweetalert2.min.css":
-/*!*******************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/sweetalert2/dist/sweetalert2.min.css ***!
-  \*******************************************************************************************************************************************/
+/*!*********************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--11-1!./node_modules/postcss-loader/src??ref--11-2!./node_modules/sweetalert2/dist/sweetalert2.min.css ***!
+  \*********************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6650,7 +6530,7 @@ exports = module.exports = __webpack_require__(/*! ../../css-loader/lib/css-base
 
 
 // module
-exports.push([module.i, ".swal2-popup.swal2-toast{\n  flex-direction:row;\n  align-items:center;\n  width:auto;\n  padding:.625em;\n  overflow-y:hidden;\n  background:#fff;\n  box-shadow:0 0 .625em #d9d9d9\n}\n\n.swal2-popup.swal2-toast .swal2-header{\n  flex-direction:row\n}\n\n.swal2-popup.swal2-toast .swal2-title{\n  flex-grow:1;\n  justify-content:flex-start;\n  margin:0 .6em;\n  font-size:1em\n}\n\n.swal2-popup.swal2-toast .swal2-footer{\n  margin:.5em 0 0;\n  padding:.5em 0 0;\n  font-size:.8em\n}\n\n.swal2-popup.swal2-toast .swal2-close{\n  position:static;\n  width:.8em;\n  height:.8em;\n  line-height:.8\n}\n\n.swal2-popup.swal2-toast .swal2-content{\n  justify-content:flex-start;\n  font-size:1em\n}\n\n.swal2-popup.swal2-toast .swal2-icon{\n  width:2em;\n  min-width:2em;\n  height:2em;\n  margin:0\n}\n\n.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{\n  display:flex;\n  align-items:center;\n  font-size:1.8em;\n  font-weight:700\n}\n\n@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){\n  .swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{\n    font-size:.25em\n  }\n}\n\n.swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{\n  width:2em;\n  height:2em\n}\n\n.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{\n  top:.875em;\n  width:1.375em\n}\n\n.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{\n  left:.3125em\n}\n\n.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{\n  right:.3125em\n}\n\n.swal2-popup.swal2-toast .swal2-actions{\n  flex-basis:auto!important;\n  width:auto;\n  height:auto;\n  margin:0 .3125em\n}\n\n.swal2-popup.swal2-toast .swal2-styled{\n  margin:0 .3125em;\n  padding:.3125em .625em;\n  font-size:1em\n}\n\n.swal2-popup.swal2-toast .swal2-styled:focus{\n  box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(50,100,150,.4)\n}\n\n.swal2-popup.swal2-toast .swal2-success{\n  border-color:#a5dc86\n}\n\n.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line]{\n  position:absolute;\n  width:1.6em;\n  height:3em;\n  transform:rotate(45deg);\n  border-radius:50%\n}\n\n.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{\n  top:-.8em;\n  left:-.5em;\n  transform:rotate(-45deg);\n  transform-origin:2em 2em;\n  border-radius:4em 0 0 4em\n}\n\n.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{\n  top:-.25em;\n  left:.9375em;\n  transform-origin:0 1.5em;\n  border-radius:0 4em 4em 0\n}\n\n.swal2-popup.swal2-toast .swal2-success .swal2-success-ring{\n  width:2em;\n  height:2em\n}\n\n.swal2-popup.swal2-toast .swal2-success .swal2-success-fix{\n  top:0;\n  left:.4375em;\n  width:.4375em;\n  height:2.6875em\n}\n\n.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line]{\n  height:.3125em\n}\n\n.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{\n  top:1.125em;\n  left:.1875em;\n  width:.75em\n}\n\n.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{\n  top:.9375em;\n  right:.1875em;\n  width:1.375em\n}\n\n.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip{\n  -webkit-animation:swal2-toast-animate-success-line-tip .75s;\n  animation:swal2-toast-animate-success-line-tip .75s\n}\n\n.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long{\n  -webkit-animation:swal2-toast-animate-success-line-long .75s;\n  animation:swal2-toast-animate-success-line-long .75s\n}\n\n.swal2-popup.swal2-toast.swal2-show{\n  -webkit-animation:swal2-toast-show .5s;\n  animation:swal2-toast-show .5s\n}\n\n.swal2-popup.swal2-toast.swal2-hide{\n  -webkit-animation:swal2-toast-hide .1s forwards;\n  animation:swal2-toast-hide .1s forwards\n}\n\n.swal2-container{\n  display:flex;\n  position:fixed;\n  z-index:1060;\n  top:0;\n  right:0;\n  bottom:0;\n  left:0;\n  flex-direction:row;\n  align-items:center;\n  justify-content:center;\n  padding:.625em;\n  overflow-x:hidden;\n  transition:background-color .1s;\n  -webkit-overflow-scrolling:touch\n}\n\n.swal2-container.swal2-backdrop-show,.swal2-container.swal2-noanimation{\n  background:rgba(0,0,0,.4)\n}\n\n.swal2-container.swal2-backdrop-hide{\n  background:0 0!important\n}\n\n.swal2-container.swal2-top{\n  align-items:flex-start\n}\n\n.swal2-container.swal2-top-left,.swal2-container.swal2-top-start{\n  align-items:flex-start;\n  justify-content:flex-start\n}\n\n.swal2-container.swal2-top-end,.swal2-container.swal2-top-right{\n  align-items:flex-start;\n  justify-content:flex-end\n}\n\n.swal2-container.swal2-center{\n  align-items:center\n}\n\n.swal2-container.swal2-center-left,.swal2-container.swal2-center-start{\n  align-items:center;\n  justify-content:flex-start\n}\n\n.swal2-container.swal2-center-end,.swal2-container.swal2-center-right{\n  align-items:center;\n  justify-content:flex-end\n}\n\n.swal2-container.swal2-bottom{\n  align-items:flex-end\n}\n\n.swal2-container.swal2-bottom-left,.swal2-container.swal2-bottom-start{\n  align-items:flex-end;\n  justify-content:flex-start\n}\n\n.swal2-container.swal2-bottom-end,.swal2-container.swal2-bottom-right{\n  align-items:flex-end;\n  justify-content:flex-end\n}\n\n.swal2-container.swal2-bottom-end>:first-child,.swal2-container.swal2-bottom-left>:first-child,.swal2-container.swal2-bottom-right>:first-child,.swal2-container.swal2-bottom-start>:first-child,.swal2-container.swal2-bottom>:first-child{\n  margin-top:auto\n}\n\n.swal2-container.swal2-grow-fullscreen>.swal2-modal{\n  display:flex!important;\n  flex:1;\n  align-self:stretch;\n  justify-content:center\n}\n\n.swal2-container.swal2-grow-row>.swal2-modal{\n  display:flex!important;\n  flex:1;\n  align-content:center;\n  justify-content:center\n}\n\n.swal2-container.swal2-grow-column{\n  flex:1;\n  flex-direction:column\n}\n\n.swal2-container.swal2-grow-column.swal2-bottom,.swal2-container.swal2-grow-column.swal2-center,.swal2-container.swal2-grow-column.swal2-top{\n  align-items:center\n}\n\n.swal2-container.swal2-grow-column.swal2-bottom-left,.swal2-container.swal2-grow-column.swal2-bottom-start,.swal2-container.swal2-grow-column.swal2-center-left,.swal2-container.swal2-grow-column.swal2-center-start,.swal2-container.swal2-grow-column.swal2-top-left,.swal2-container.swal2-grow-column.swal2-top-start{\n  align-items:flex-start\n}\n\n.swal2-container.swal2-grow-column.swal2-bottom-end,.swal2-container.swal2-grow-column.swal2-bottom-right,.swal2-container.swal2-grow-column.swal2-center-end,.swal2-container.swal2-grow-column.swal2-center-right,.swal2-container.swal2-grow-column.swal2-top-end,.swal2-container.swal2-grow-column.swal2-top-right{\n  align-items:flex-end\n}\n\n.swal2-container.swal2-grow-column>.swal2-modal{\n  display:flex!important;\n  flex:1;\n  align-content:center;\n  justify-content:center\n}\n\n.swal2-container.swal2-no-transition{\n  transition:none!important\n}\n\n.swal2-container:not(.swal2-top):not(.swal2-top-start):not(.swal2-top-end):not(.swal2-top-left):not(.swal2-top-right):not(.swal2-center-start):not(.swal2-center-end):not(.swal2-center-left):not(.swal2-center-right):not(.swal2-bottom):not(.swal2-bottom-start):not(.swal2-bottom-end):not(.swal2-bottom-left):not(.swal2-bottom-right):not(.swal2-grow-fullscreen)>.swal2-modal{\n  margin:auto\n}\n\n@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){\n  .swal2-container .swal2-modal{\n    margin:0!important\n  }\n}\n\n.swal2-popup{\n  display:none;\n  position:relative;\n  box-sizing:border-box;\n  flex-direction:column;\n  justify-content:center;\n  width:32em;\n  max-width:100%;\n  padding:1.25em;\n  border:none;\n  border-radius:.3125em;\n  background:#fff;\n  font-family:inherit;\n  font-size:1rem\n}\n\n.swal2-popup:focus{\n  outline:0\n}\n\n.swal2-popup.swal2-loading{\n  overflow-y:hidden\n}\n\n.swal2-header{\n  display:flex;\n  flex-direction:column;\n  align-items:center\n}\n\n.swal2-title{\n  position:relative;\n  max-width:100%;\n  margin:0 0 .4em;\n  padding:0;\n  color:#595959;\n  font-size:1.875em;\n  font-weight:600;\n  text-align:center;\n  text-transform:none;\n  word-wrap:break-word\n}\n\n.swal2-actions{\n  display:flex;\n  z-index:1;\n  flex-wrap:wrap;\n  align-items:center;\n  justify-content:center;\n  width:100%;\n  margin:1.25em auto 0\n}\n\n.swal2-actions:not(.swal2-loading) .swal2-styled[disabled]{\n  opacity:.4\n}\n\n.swal2-actions:not(.swal2-loading) .swal2-styled:hover{\n  background-image:linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1))\n}\n\n.swal2-actions:not(.swal2-loading) .swal2-styled:active{\n  background-image:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2))\n}\n\n.swal2-actions.swal2-loading .swal2-styled.swal2-confirm{\n  box-sizing:border-box;\n  width:2.5em;\n  height:2.5em;\n  margin:.46875em;\n  padding:0;\n  -webkit-animation:swal2-rotate-loading 1.5s linear 0s infinite normal;\n  animation:swal2-rotate-loading 1.5s linear 0s infinite normal;\n  border:.25em solid transparent;\n  border-radius:100%;\n  border-color:transparent;\n  background-color:transparent!important;\n  color:transparent!important;\n  cursor:default;\n  -webkit-user-select:none;\n  -moz-user-select:none;\n  -ms-user-select:none;\n  user-select:none\n}\n\n.swal2-actions.swal2-loading .swal2-styled.swal2-cancel{\n  margin-right:30px;\n  margin-left:30px\n}\n\n.swal2-actions.swal2-loading :not(.swal2-styled).swal2-confirm::after{\n  content:\"\";\n  display:inline-block;\n  width:15px;\n  height:15px;\n  margin-left:5px;\n  -webkit-animation:swal2-rotate-loading 1.5s linear 0s infinite normal;\n  animation:swal2-rotate-loading 1.5s linear 0s infinite normal;\n  border:3px solid #999;\n  border-radius:50%;\n  border-right-color:transparent;\n  box-shadow:1px 1px 1px #fff\n}\n\n.swal2-styled{\n  margin:.3125em;\n  padding:.625em 2em;\n  box-shadow:none;\n  font-weight:500\n}\n\n.swal2-styled:not([disabled]){\n  cursor:pointer\n}\n\n.swal2-styled.swal2-confirm{\n  border:0;\n  border-radius:.25em;\n  background:initial;\n  background-color:#3085d6;\n  color:#fff;\n  font-size:1.0625em\n}\n\n.swal2-styled.swal2-cancel{\n  border:0;\n  border-radius:.25em;\n  background:initial;\n  background-color:#aaa;\n  color:#fff;\n  font-size:1.0625em\n}\n\n.swal2-styled:focus{\n  outline:0;\n  box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(50,100,150,.4)\n}\n\n.swal2-styled::-moz-focus-inner{\n  border:0\n}\n\n.swal2-footer{\n  justify-content:center;\n  margin:1.25em 0 0;\n  padding:1em 0 0;\n  border-top:1px solid #eee;\n  color:#545454;\n  font-size:1em\n}\n\n.swal2-timer-progress-bar-container{\n  position:absolute;\n  right:0;\n  bottom:0;\n  left:0;\n  height:.25em;\n  overflow:hidden;\n  border-bottom-right-radius:.3125em;\n  border-bottom-left-radius:.3125em\n}\n\n.swal2-timer-progress-bar{\n  width:100%;\n  height:.25em;\n  background:rgba(0,0,0,.2)\n}\n\n.swal2-image{\n  max-width:100%;\n  margin:1.25em auto\n}\n\n.swal2-close{\n  position:absolute;\n  z-index:2;\n  top:0;\n  right:0;\n  align-items:center;\n  justify-content:center;\n  width:1.2em;\n  height:1.2em;\n  padding:0;\n  overflow:hidden;\n  transition:color .1s ease-out;\n  border:none;\n  border-radius:0;\n  background:0 0;\n  color:#ccc;\n  font-family:serif;\n  font-size:2.5em;\n  line-height:1.2;\n  cursor:pointer\n}\n\n.swal2-close:hover{\n  transform:none;\n  background:0 0;\n  color:#f27474\n}\n\n.swal2-close::-moz-focus-inner{\n  border:0\n}\n\n.swal2-content{\n  z-index:1;\n  justify-content:center;\n  margin:0;\n  padding:0;\n  color:#545454;\n  font-size:1.125em;\n  font-weight:400;\n  line-height:normal;\n  text-align:center;\n  word-wrap:break-word\n}\n\n.swal2-checkbox,.swal2-file,.swal2-input,.swal2-radio,.swal2-select,.swal2-textarea{\n  margin:1em auto\n}\n\n.swal2-file,.swal2-input,.swal2-textarea{\n  box-sizing:border-box;\n  width:100%;\n  transition:border-color .3s,box-shadow .3s;\n  border:1px solid #d9d9d9;\n  border-radius:.1875em;\n  background:inherit;\n  box-shadow:inset 0 1px 1px rgba(0,0,0,.06);\n  color:inherit;\n  font-size:1.125em\n}\n\n.swal2-file.swal2-inputerror,.swal2-input.swal2-inputerror,.swal2-textarea.swal2-inputerror{\n  border-color:#f27474!important;\n  box-shadow:0 0 2px #f27474!important\n}\n\n.swal2-file:focus,.swal2-input:focus,.swal2-textarea:focus{\n  border:1px solid #b4dbed;\n  outline:0;\n  box-shadow:0 0 3px #c4e6f5\n}\n\n.swal2-file::-webkit-input-placeholder,.swal2-input::-webkit-input-placeholder,.swal2-textarea::-webkit-input-placeholder{\n  color:#ccc\n}\n\n.swal2-file::-moz-placeholder,.swal2-input::-moz-placeholder,.swal2-textarea::-moz-placeholder{\n  color:#ccc\n}\n\n.swal2-file:-ms-input-placeholder,.swal2-input:-ms-input-placeholder,.swal2-textarea:-ms-input-placeholder{\n  color:#ccc\n}\n\n.swal2-file::-ms-input-placeholder,.swal2-input::-ms-input-placeholder,.swal2-textarea::-ms-input-placeholder{\n  color:#ccc\n}\n\n.swal2-file::-webkit-input-placeholder, .swal2-input::-webkit-input-placeholder, .swal2-textarea::-webkit-input-placeholder{\n  color:#ccc\n}\n\n.swal2-file::-moz-placeholder, .swal2-input::-moz-placeholder, .swal2-textarea::-moz-placeholder{\n  color:#ccc\n}\n\n.swal2-file:-ms-input-placeholder, .swal2-input:-ms-input-placeholder, .swal2-textarea:-ms-input-placeholder{\n  color:#ccc\n}\n\n.swal2-file::-ms-input-placeholder, .swal2-input::-ms-input-placeholder, .swal2-textarea::-ms-input-placeholder{\n  color:#ccc\n}\n\n.swal2-file::placeholder,.swal2-input::placeholder,.swal2-textarea::placeholder{\n  color:#ccc\n}\n\n.swal2-range{\n  margin:1em auto;\n  background:#fff\n}\n\n.swal2-range input{\n  width:80%\n}\n\n.swal2-range output{\n  width:20%;\n  color:inherit;\n  font-weight:600;\n  text-align:center\n}\n\n.swal2-range input,.swal2-range output{\n  height:2.625em;\n  padding:0;\n  font-size:1.125em;\n  line-height:2.625em\n}\n\n.swal2-input{\n  height:2.625em;\n  padding:0 .75em\n}\n\n.swal2-input[type=number]{\n  max-width:10em\n}\n\n.swal2-file{\n  background:inherit;\n  font-size:1.125em\n}\n\n.swal2-textarea{\n  height:6.75em;\n  padding:.75em\n}\n\n.swal2-select{\n  min-width:50%;\n  max-width:100%;\n  padding:.375em .625em;\n  background:inherit;\n  color:inherit;\n  font-size:1.125em\n}\n\n.swal2-checkbox,.swal2-radio{\n  align-items:center;\n  justify-content:center;\n  background:#fff;\n  color:inherit\n}\n\n.swal2-checkbox label,.swal2-radio label{\n  margin:0 .6em;\n  font-size:1.125em\n}\n\n.swal2-checkbox input,.swal2-radio input{\n  margin:0 .4em\n}\n\n.swal2-validation-message{\n  display:none;\n  align-items:center;\n  justify-content:center;\n  padding:.625em;\n  overflow:hidden;\n  background:#f0f0f0;\n  color:#666;\n  font-size:1em;\n  font-weight:300\n}\n\n.swal2-validation-message::before{\n  content:\"!\";\n  display:inline-block;\n  width:1.5em;\n  min-width:1.5em;\n  height:1.5em;\n  margin:0 .625em;\n  border-radius:50%;\n  background-color:#f27474;\n  color:#fff;\n  font-weight:600;\n  line-height:1.5em;\n  text-align:center\n}\n\n.swal2-icon{\n  position:relative;\n  box-sizing:content-box;\n  justify-content:center;\n  width:5em;\n  height:5em;\n  margin:1.25em auto 1.875em;\n  border:.25em solid transparent;\n  border-radius:50%;\n  font-family:inherit;\n  line-height:5em;\n  cursor:default;\n  -webkit-user-select:none;\n  -moz-user-select:none;\n  -ms-user-select:none;\n  user-select:none\n}\n\n.swal2-icon .swal2-icon-content{\n  display:flex;\n  align-items:center;\n  font-size:3.75em\n}\n\n.swal2-icon.swal2-error{\n  border-color:#f27474;\n  color:#f27474\n}\n\n.swal2-icon.swal2-error .swal2-x-mark{\n  position:relative;\n  flex-grow:1\n}\n\n.swal2-icon.swal2-error [class^=swal2-x-mark-line]{\n  display:block;\n  position:absolute;\n  top:2.3125em;\n  width:2.9375em;\n  height:.3125em;\n  border-radius:.125em;\n  background-color:#f27474\n}\n\n.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{\n  left:1.0625em;\n  transform:rotate(45deg)\n}\n\n.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{\n  right:1em;\n  transform:rotate(-45deg)\n}\n\n.swal2-icon.swal2-error.swal2-icon-show{\n  -webkit-animation:swal2-animate-error-icon .5s;\n  animation:swal2-animate-error-icon .5s\n}\n\n.swal2-icon.swal2-error.swal2-icon-show .swal2-x-mark{\n  -webkit-animation:swal2-animate-error-x-mark .5s;\n  animation:swal2-animate-error-x-mark .5s\n}\n\n.swal2-icon.swal2-warning{\n  border-color:#facea8;\n  color:#f8bb86\n}\n\n.swal2-icon.swal2-info{\n  border-color:#9de0f6;\n  color:#3fc3ee\n}\n\n.swal2-icon.swal2-question{\n  border-color:#c9dae1;\n  color:#87adbd\n}\n\n.swal2-icon.swal2-success{\n  border-color:#a5dc86;\n  color:#a5dc86\n}\n\n.swal2-icon.swal2-success [class^=swal2-success-circular-line]{\n  position:absolute;\n  width:3.75em;\n  height:7.5em;\n  transform:rotate(45deg);\n  border-radius:50%\n}\n\n.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=left]{\n  top:-.4375em;\n  left:-2.0635em;\n  transform:rotate(-45deg);\n  transform-origin:3.75em 3.75em;\n  border-radius:7.5em 0 0 7.5em\n}\n\n.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=right]{\n  top:-.6875em;\n  left:1.875em;\n  transform:rotate(-45deg);\n  transform-origin:0 3.75em;\n  border-radius:0 7.5em 7.5em 0\n}\n\n.swal2-icon.swal2-success .swal2-success-ring{\n  position:absolute;\n  z-index:2;\n  top:-.25em;\n  left:-.25em;\n  box-sizing:content-box;\n  width:100%;\n  height:100%;\n  border:.25em solid rgba(165,220,134,.3);\n  border-radius:50%\n}\n\n.swal2-icon.swal2-success .swal2-success-fix{\n  position:absolute;\n  z-index:1;\n  top:.5em;\n  left:1.625em;\n  width:.4375em;\n  height:5.625em;\n  transform:rotate(-45deg)\n}\n\n.swal2-icon.swal2-success [class^=swal2-success-line]{\n  display:block;\n  position:absolute;\n  z-index:2;\n  height:.3125em;\n  border-radius:.125em;\n  background-color:#a5dc86\n}\n\n.swal2-icon.swal2-success [class^=swal2-success-line][class$=tip]{\n  top:2.875em;\n  left:.8125em;\n  width:1.5625em;\n  transform:rotate(45deg)\n}\n\n.swal2-icon.swal2-success [class^=swal2-success-line][class$=long]{\n  top:2.375em;\n  right:.5em;\n  width:2.9375em;\n  transform:rotate(-45deg)\n}\n\n.swal2-icon.swal2-success.swal2-icon-show .swal2-success-line-tip{\n  -webkit-animation:swal2-animate-success-line-tip .75s;\n  animation:swal2-animate-success-line-tip .75s\n}\n\n.swal2-icon.swal2-success.swal2-icon-show .swal2-success-line-long{\n  -webkit-animation:swal2-animate-success-line-long .75s;\n  animation:swal2-animate-success-line-long .75s\n}\n\n.swal2-icon.swal2-success.swal2-icon-show .swal2-success-circular-line-right{\n  -webkit-animation:swal2-rotate-success-circular-line 4.25s ease-in;\n  animation:swal2-rotate-success-circular-line 4.25s ease-in\n}\n\n.swal2-progress-steps{\n  align-items:center;\n  margin:0 0 1.25em;\n  padding:0;\n  background:inherit;\n  font-weight:600\n}\n\n.swal2-progress-steps li{\n  display:inline-block;\n  position:relative\n}\n\n.swal2-progress-steps .swal2-progress-step{\n  z-index:20;\n  width:2em;\n  height:2em;\n  border-radius:2em;\n  background:#3085d6;\n  color:#fff;\n  line-height:2em;\n  text-align:center\n}\n\n.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{\n  background:#3085d6\n}\n\n.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{\n  background:#add8e6;\n  color:#fff\n}\n\n.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{\n  background:#add8e6\n}\n\n.swal2-progress-steps .swal2-progress-step-line{\n  z-index:10;\n  width:2.5em;\n  height:.4em;\n  margin:0 -1px;\n  background:#3085d6\n}\n\n[class^=swal2]{\n  -webkit-tap-highlight-color:transparent\n}\n\n.swal2-show{\n  -webkit-animation:swal2-show .3s;\n  animation:swal2-show .3s\n}\n\n.swal2-hide{\n  -webkit-animation:swal2-hide .15s forwards;\n  animation:swal2-hide .15s forwards\n}\n\n.swal2-noanimation{\n  transition:none\n}\n\n.swal2-scrollbar-measure{\n  position:absolute;\n  top:-9999px;\n  width:50px;\n  height:50px;\n  overflow:scroll\n}\n\n.swal2-rtl .swal2-close{\n  right:auto;\n  left:0\n}\n\n.swal2-rtl .swal2-timer-progress-bar{\n  right:0;\n  left:auto\n}\n\n@supports (-ms-accelerator:true){\n  .swal2-range input{\n    width:100%!important\n  }\n\n  .swal2-range output{\n    display:none\n  }\n}\n\n@media all and (-ms-high-contrast:none),(-ms-high-contrast:active){\n  .swal2-range input{\n    width:100%!important\n  }\n\n  .swal2-range output{\n    display:none\n  }\n}\n\n@-moz-document url-prefix(){\n  .swal2-close:focus{\n    outline:2px solid rgba(50,100,150,.4)\n  }\n}\n\n@-webkit-keyframes swal2-toast-show{\n  0%{\n    transform:translateY(-.625em) rotateZ(2deg)\n  }\n\n  33%{\n    transform:translateY(0) rotateZ(-2deg)\n  }\n\n  66%{\n    transform:translateY(.3125em) rotateZ(2deg)\n  }\n\n  100%{\n    transform:translateY(0) rotateZ(0)\n  }\n}\n\n@keyframes swal2-toast-show{\n  0%{\n    transform:translateY(-.625em) rotateZ(2deg)\n  }\n\n  33%{\n    transform:translateY(0) rotateZ(-2deg)\n  }\n\n  66%{\n    transform:translateY(.3125em) rotateZ(2deg)\n  }\n\n  100%{\n    transform:translateY(0) rotateZ(0)\n  }\n}\n\n@-webkit-keyframes swal2-toast-hide{\n  100%{\n    transform:rotateZ(1deg);\n    opacity:0\n  }\n}\n\n@keyframes swal2-toast-hide{\n  100%{\n    transform:rotateZ(1deg);\n    opacity:0\n  }\n}\n\n@-webkit-keyframes swal2-toast-animate-success-line-tip{\n  0%{\n    top:.5625em;\n    left:.0625em;\n    width:0\n  }\n\n  54%{\n    top:.125em;\n    left:.125em;\n    width:0\n  }\n\n  70%{\n    top:.625em;\n    left:-.25em;\n    width:1.625em\n  }\n\n  84%{\n    top:1.0625em;\n    left:.75em;\n    width:.5em\n  }\n\n  100%{\n    top:1.125em;\n    left:.1875em;\n    width:.75em\n  }\n}\n\n@keyframes swal2-toast-animate-success-line-tip{\n  0%{\n    top:.5625em;\n    left:.0625em;\n    width:0\n  }\n\n  54%{\n    top:.125em;\n    left:.125em;\n    width:0\n  }\n\n  70%{\n    top:.625em;\n    left:-.25em;\n    width:1.625em\n  }\n\n  84%{\n    top:1.0625em;\n    left:.75em;\n    width:.5em\n  }\n\n  100%{\n    top:1.125em;\n    left:.1875em;\n    width:.75em\n  }\n}\n\n@-webkit-keyframes swal2-toast-animate-success-line-long{\n  0%{\n    top:1.625em;\n    right:1.375em;\n    width:0\n  }\n\n  65%{\n    top:1.25em;\n    right:.9375em;\n    width:0\n  }\n\n  84%{\n    top:.9375em;\n    right:0;\n    width:1.125em\n  }\n\n  100%{\n    top:.9375em;\n    right:.1875em;\n    width:1.375em\n  }\n}\n\n@keyframes swal2-toast-animate-success-line-long{\n  0%{\n    top:1.625em;\n    right:1.375em;\n    width:0\n  }\n\n  65%{\n    top:1.25em;\n    right:.9375em;\n    width:0\n  }\n\n  84%{\n    top:.9375em;\n    right:0;\n    width:1.125em\n  }\n\n  100%{\n    top:.9375em;\n    right:.1875em;\n    width:1.375em\n  }\n}\n\n@-webkit-keyframes swal2-show{\n  0%{\n    transform:scale(.7)\n  }\n\n  45%{\n    transform:scale(1.05)\n  }\n\n  80%{\n    transform:scale(.95)\n  }\n\n  100%{\n    transform:scale(1)\n  }\n}\n\n@keyframes swal2-show{\n  0%{\n    transform:scale(.7)\n  }\n\n  45%{\n    transform:scale(1.05)\n  }\n\n  80%{\n    transform:scale(.95)\n  }\n\n  100%{\n    transform:scale(1)\n  }\n}\n\n@-webkit-keyframes swal2-hide{\n  0%{\n    transform:scale(1);\n    opacity:1\n  }\n\n  100%{\n    transform:scale(.5);\n    opacity:0\n  }\n}\n\n@keyframes swal2-hide{\n  0%{\n    transform:scale(1);\n    opacity:1\n  }\n\n  100%{\n    transform:scale(.5);\n    opacity:0\n  }\n}\n\n@-webkit-keyframes swal2-animate-success-line-tip{\n  0%{\n    top:1.1875em;\n    left:.0625em;\n    width:0\n  }\n\n  54%{\n    top:1.0625em;\n    left:.125em;\n    width:0\n  }\n\n  70%{\n    top:2.1875em;\n    left:-.375em;\n    width:3.125em\n  }\n\n  84%{\n    top:3em;\n    left:1.3125em;\n    width:1.0625em\n  }\n\n  100%{\n    top:2.8125em;\n    left:.8125em;\n    width:1.5625em\n  }\n}\n\n@keyframes swal2-animate-success-line-tip{\n  0%{\n    top:1.1875em;\n    left:.0625em;\n    width:0\n  }\n\n  54%{\n    top:1.0625em;\n    left:.125em;\n    width:0\n  }\n\n  70%{\n    top:2.1875em;\n    left:-.375em;\n    width:3.125em\n  }\n\n  84%{\n    top:3em;\n    left:1.3125em;\n    width:1.0625em\n  }\n\n  100%{\n    top:2.8125em;\n    left:.8125em;\n    width:1.5625em\n  }\n}\n\n@-webkit-keyframes swal2-animate-success-line-long{\n  0%{\n    top:3.375em;\n    right:2.875em;\n    width:0\n  }\n\n  65%{\n    top:3.375em;\n    right:2.875em;\n    width:0\n  }\n\n  84%{\n    top:2.1875em;\n    right:0;\n    width:3.4375em\n  }\n\n  100%{\n    top:2.375em;\n    right:.5em;\n    width:2.9375em\n  }\n}\n\n@keyframes swal2-animate-success-line-long{\n  0%{\n    top:3.375em;\n    right:2.875em;\n    width:0\n  }\n\n  65%{\n    top:3.375em;\n    right:2.875em;\n    width:0\n  }\n\n  84%{\n    top:2.1875em;\n    right:0;\n    width:3.4375em\n  }\n\n  100%{\n    top:2.375em;\n    right:.5em;\n    width:2.9375em\n  }\n}\n\n@-webkit-keyframes swal2-rotate-success-circular-line{\n  0%{\n    transform:rotate(-45deg)\n  }\n\n  5%{\n    transform:rotate(-45deg)\n  }\n\n  12%{\n    transform:rotate(-405deg)\n  }\n\n  100%{\n    transform:rotate(-405deg)\n  }\n}\n\n@keyframes swal2-rotate-success-circular-line{\n  0%{\n    transform:rotate(-45deg)\n  }\n\n  5%{\n    transform:rotate(-45deg)\n  }\n\n  12%{\n    transform:rotate(-405deg)\n  }\n\n  100%{\n    transform:rotate(-405deg)\n  }\n}\n\n@-webkit-keyframes swal2-animate-error-x-mark{\n  0%{\n    margin-top:1.625em;\n    transform:scale(.4);\n    opacity:0\n  }\n\n  50%{\n    margin-top:1.625em;\n    transform:scale(.4);\n    opacity:0\n  }\n\n  80%{\n    margin-top:-.375em;\n    transform:scale(1.15)\n  }\n\n  100%{\n    margin-top:0;\n    transform:scale(1);\n    opacity:1\n  }\n}\n\n@keyframes swal2-animate-error-x-mark{\n  0%{\n    margin-top:1.625em;\n    transform:scale(.4);\n    opacity:0\n  }\n\n  50%{\n    margin-top:1.625em;\n    transform:scale(.4);\n    opacity:0\n  }\n\n  80%{\n    margin-top:-.375em;\n    transform:scale(1.15)\n  }\n\n  100%{\n    margin-top:0;\n    transform:scale(1);\n    opacity:1\n  }\n}\n\n@-webkit-keyframes swal2-animate-error-icon{\n  0%{\n    transform:rotateX(100deg);\n    opacity:0\n  }\n\n  100%{\n    transform:rotateX(0);\n    opacity:1\n  }\n}\n\n@keyframes swal2-animate-error-icon{\n  0%{\n    transform:rotateX(100deg);\n    opacity:0\n  }\n\n  100%{\n    transform:rotateX(0);\n    opacity:1\n  }\n}\n\n@-webkit-keyframes swal2-rotate-loading{\n  0%{\n    transform:rotate(0)\n  }\n\n  100%{\n    transform:rotate(360deg)\n  }\n}\n\n@keyframes swal2-rotate-loading{\n  0%{\n    transform:rotate(0)\n  }\n\n  100%{\n    transform:rotate(360deg)\n  }\n}\n\nbody.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){\n  overflow:hidden\n}\n\nbody.swal2-height-auto{\n  height:auto!important\n}\n\nbody.swal2-no-backdrop .swal2-container{\n  top:auto;\n  right:auto;\n  bottom:auto;\n  left:auto;\n  max-width:calc(100% - .625em * 2);\n  background-color:transparent!important\n}\n\nbody.swal2-no-backdrop .swal2-container>.swal2-modal{\n  box-shadow:0 0 10px rgba(0,0,0,.4)\n}\n\nbody.swal2-no-backdrop .swal2-container.swal2-top{\n  top:0;\n  left:50%;\n  transform:translateX(-50%)\n}\n\nbody.swal2-no-backdrop .swal2-container.swal2-top-left,body.swal2-no-backdrop .swal2-container.swal2-top-start{\n  top:0;\n  left:0\n}\n\nbody.swal2-no-backdrop .swal2-container.swal2-top-end,body.swal2-no-backdrop .swal2-container.swal2-top-right{\n  top:0;\n  right:0\n}\n\nbody.swal2-no-backdrop .swal2-container.swal2-center{\n  top:50%;\n  left:50%;\n  transform:translate(-50%,-50%)\n}\n\nbody.swal2-no-backdrop .swal2-container.swal2-center-left,body.swal2-no-backdrop .swal2-container.swal2-center-start{\n  top:50%;\n  left:0;\n  transform:translateY(-50%)\n}\n\nbody.swal2-no-backdrop .swal2-container.swal2-center-end,body.swal2-no-backdrop .swal2-container.swal2-center-right{\n  top:50%;\n  right:0;\n  transform:translateY(-50%)\n}\n\nbody.swal2-no-backdrop .swal2-container.swal2-bottom{\n  bottom:0;\n  left:50%;\n  transform:translateX(-50%)\n}\n\nbody.swal2-no-backdrop .swal2-container.swal2-bottom-left,body.swal2-no-backdrop .swal2-container.swal2-bottom-start{\n  bottom:0;\n  left:0\n}\n\nbody.swal2-no-backdrop .swal2-container.swal2-bottom-end,body.swal2-no-backdrop .swal2-container.swal2-bottom-right{\n  right:0;\n  bottom:0\n}\n\n@media print{\n  body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){\n    overflow-y:scroll!important\n  }\n\n  body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true]{\n    display:none\n  }\n\n  body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container{\n    position:static!important\n  }\n}\n\nbody.swal2-toast-shown .swal2-container{\n  background-color:transparent\n}\n\nbody.swal2-toast-shown .swal2-container.swal2-top{\n  top:0;\n  right:auto;\n  bottom:auto;\n  left:50%;\n  transform:translateX(-50%)\n}\n\nbody.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{\n  top:0;\n  right:0;\n  bottom:auto;\n  left:auto\n}\n\nbody.swal2-toast-shown .swal2-container.swal2-top-left,body.swal2-toast-shown .swal2-container.swal2-top-start{\n  top:0;\n  right:auto;\n  bottom:auto;\n  left:0\n}\n\nbody.swal2-toast-shown .swal2-container.swal2-center-left,body.swal2-toast-shown .swal2-container.swal2-center-start{\n  top:50%;\n  right:auto;\n  bottom:auto;\n  left:0;\n  transform:translateY(-50%)\n}\n\nbody.swal2-toast-shown .swal2-container.swal2-center{\n  top:50%;\n  right:auto;\n  bottom:auto;\n  left:50%;\n  transform:translate(-50%,-50%)\n}\n\nbody.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{\n  top:50%;\n  right:0;\n  bottom:auto;\n  left:auto;\n  transform:translateY(-50%)\n}\n\nbody.swal2-toast-shown .swal2-container.swal2-bottom-left,body.swal2-toast-shown .swal2-container.swal2-bottom-start{\n  top:auto;\n  right:auto;\n  bottom:0;\n  left:0\n}\n\nbody.swal2-toast-shown .swal2-container.swal2-bottom{\n  top:auto;\n  right:auto;\n  bottom:0;\n  left:50%;\n  transform:translateX(-50%)\n}\n\nbody.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{\n  top:auto;\n  right:0;\n  bottom:0;\n  left:auto\n}\n\nbody.swal2-toast-column .swal2-toast{\n  flex-direction:column;\n  align-items:stretch\n}\n\nbody.swal2-toast-column .swal2-toast .swal2-actions{\n  flex:1;\n  align-self:stretch;\n  height:2.2em;\n  margin-top:.3125em\n}\n\nbody.swal2-toast-column .swal2-toast .swal2-loading{\n  justify-content:center\n}\n\nbody.swal2-toast-column .swal2-toast .swal2-input{\n  height:2em;\n  margin:.3125em auto;\n  font-size:1em\n}\n\nbody.swal2-toast-column .swal2-toast .swal2-validation-message{\n  font-size:1em\n}", ""]);
+exports.push([module.i, ".swal2-popup.swal2-toast{\n  box-sizing:border-box;\n  grid-column:1/4!important;\n  grid-row:1/4!important;\n  grid-template-columns:1fr 99fr 1fr;\n  padding:1em;\n  overflow-y:hidden;\n  background:#fff;\n  box-shadow:0 0 .625em #d9d9d9\n}\n\n.swal2-popup.swal2-toast>*{\n  grid-column:2\n}\n\n.swal2-popup.swal2-toast .swal2-title{\n  margin:1em;\n  padding:0;\n  font-size:1em;\n  text-align:initial\n}\n\n.swal2-popup.swal2-toast .swal2-loading{\n  justify-content:center\n}\n\n.swal2-popup.swal2-toast .swal2-input{\n  height:2em;\n  margin:.5em;\n  font-size:1em\n}\n\n.swal2-popup.swal2-toast .swal2-validation-message{\n  font-size:1em\n}\n\n.swal2-popup.swal2-toast .swal2-footer{\n  margin:.5em 0 0;\n  padding:.5em 0 0;\n  font-size:.8em\n}\n\n.swal2-popup.swal2-toast .swal2-close{\n  grid-column:3/3;\n  grid-row:1/99;\n  align-self:center;\n  width:.8em;\n  height:.8em;\n  margin:0;\n  font-size:2em\n}\n\n.swal2-popup.swal2-toast .swal2-html-container{\n  margin:1em;\n  padding:0;\n  font-size:1em;\n  text-align:initial\n}\n\n.swal2-popup.swal2-toast .swal2-html-container:empty{\n  padding:0\n}\n\n.swal2-popup.swal2-toast .swal2-loader{\n  grid-column:1;\n  grid-row:1/99;\n  align-self:center;\n  width:2em;\n  height:2em;\n  margin:.25em\n}\n\n.swal2-popup.swal2-toast .swal2-icon{\n  grid-column:1;\n  grid-row:1/99;\n  align-self:center;\n  width:2em;\n  min-width:2em;\n  height:2em;\n  margin:0 .5em 0 0\n}\n\n.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{\n  display:flex;\n  align-items:center;\n  font-size:1.8em;\n  font-weight:700\n}\n\n.swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{\n  width:2em;\n  height:2em\n}\n\n.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{\n  top:.875em;\n  width:1.375em\n}\n\n.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{\n  left:.3125em\n}\n\n.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{\n  right:.3125em\n}\n\n.swal2-popup.swal2-toast .swal2-actions{\n  justify-content:flex-start;\n  height:auto;\n  margin:0;\n  margin-top:.3125em;\n  padding:0\n}\n\n.swal2-popup.swal2-toast .swal2-styled{\n  margin:.25em .5em;\n  padding:.4em .6em;\n  font-size:1em\n}\n\n.swal2-popup.swal2-toast .swal2-styled:focus{\n  box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(100,150,200,.5)\n}\n\n.swal2-popup.swal2-toast .swal2-success{\n  border-color:#a5dc86\n}\n\n.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line]{\n  position:absolute;\n  width:1.6em;\n  height:3em;\n  transform:rotate(45deg);\n  border-radius:50%\n}\n\n.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{\n  top:-.8em;\n  left:-.5em;\n  transform:rotate(-45deg);\n  transform-origin:2em 2em;\n  border-radius:4em 0 0 4em\n}\n\n.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{\n  top:-.25em;\n  left:.9375em;\n  transform-origin:0 1.5em;\n  border-radius:0 4em 4em 0\n}\n\n.swal2-popup.swal2-toast .swal2-success .swal2-success-ring{\n  width:2em;\n  height:2em\n}\n\n.swal2-popup.swal2-toast .swal2-success .swal2-success-fix{\n  top:0;\n  left:.4375em;\n  width:.4375em;\n  height:2.6875em\n}\n\n.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line]{\n  height:.3125em\n}\n\n.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{\n  top:1.125em;\n  left:.1875em;\n  width:.75em\n}\n\n.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{\n  top:.9375em;\n  right:.1875em;\n  width:1.375em\n}\n\n.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip{\n  -webkit-animation:swal2-toast-animate-success-line-tip .75s;\n  animation:swal2-toast-animate-success-line-tip .75s\n}\n\n.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long{\n  -webkit-animation:swal2-toast-animate-success-line-long .75s;\n  animation:swal2-toast-animate-success-line-long .75s\n}\n\n.swal2-popup.swal2-toast.swal2-show{\n  -webkit-animation:swal2-toast-show .5s;\n  animation:swal2-toast-show .5s\n}\n\n.swal2-popup.swal2-toast.swal2-hide{\n  -webkit-animation:swal2-toast-hide .1s forwards;\n  animation:swal2-toast-hide .1s forwards\n}\n\n.swal2-container{\n  display:grid;\n  position:fixed;\n  z-index:1060;\n  top:0;\n  right:0;\n  bottom:0;\n  left:0;\n  box-sizing:border-box;\n  grid-template-areas:\"top-start     top            top-end\" \"center-start  center         center-end\" \"bottom-start  bottom-center  bottom-end\" \"gap gap gap\";\n  grid-template-rows:auto auto auto .625em;\n  height:100%;\n  padding:.625em .625em 0;\n  overflow-x:hidden;\n  transition:background-color .1s;\n  -webkit-overflow-scrolling:touch\n}\n\n.swal2-container::after{\n  content:\"\";\n  grid-column:1/4;\n  grid-row:4;\n  height:.625em\n}\n\n.swal2-container.swal2-backdrop-show,.swal2-container.swal2-noanimation{\n  background:rgba(0,0,0,.4)\n}\n\n.swal2-container.swal2-backdrop-hide{\n  background:0 0!important\n}\n\n.swal2-container.swal2-bottom-start,.swal2-container.swal2-center-start,.swal2-container.swal2-top-start{\n  grid-template-columns:minmax(0,1fr) auto auto\n}\n\n.swal2-container.swal2-bottom,.swal2-container.swal2-center,.swal2-container.swal2-top{\n  grid-template-columns:auto minmax(0,1fr) auto\n}\n\n.swal2-container.swal2-bottom-end,.swal2-container.swal2-center-end,.swal2-container.swal2-top-end{\n  grid-template-columns:auto auto minmax(0,1fr)\n}\n\n.swal2-container.swal2-top-start>.swal2-popup{\n  align-self:start\n}\n\n.swal2-container.swal2-top>.swal2-popup{\n  grid-column:2;\n  align-self:start;\n  justify-self:center\n}\n\n.swal2-container.swal2-top-end>.swal2-popup,.swal2-container.swal2-top-right>.swal2-popup{\n  grid-column:3;\n  align-self:start;\n  justify-self:end\n}\n\n.swal2-container.swal2-center-left>.swal2-popup,.swal2-container.swal2-center-start>.swal2-popup{\n  grid-row:2;\n  align-self:center\n}\n\n.swal2-container.swal2-center>.swal2-popup{\n  grid-column:2;\n  grid-row:2;\n  align-self:center;\n  justify-self:center\n}\n\n.swal2-container.swal2-center-end>.swal2-popup,.swal2-container.swal2-center-right>.swal2-popup{\n  grid-column:3;\n  grid-row:2;\n  align-self:center;\n  justify-self:end\n}\n\n.swal2-container.swal2-bottom-left>.swal2-popup,.swal2-container.swal2-bottom-start>.swal2-popup{\n  grid-column:1;\n  grid-row:3;\n  align-self:end\n}\n\n.swal2-container.swal2-bottom>.swal2-popup{\n  grid-column:2;\n  grid-row:3;\n  justify-self:center;\n  align-self:end\n}\n\n.swal2-container.swal2-bottom-end>.swal2-popup,.swal2-container.swal2-bottom-right>.swal2-popup{\n  grid-column:3;\n  grid-row:3;\n  align-self:end;\n  justify-self:end\n}\n\n.swal2-container.swal2-grow-fullscreen>.swal2-popup,.swal2-container.swal2-grow-row>.swal2-popup{\n  grid-column:1/4;\n  width:100%\n}\n\n.swal2-container.swal2-grow-column>.swal2-popup,.swal2-container.swal2-grow-fullscreen>.swal2-popup{\n  grid-row:1/4;\n  align-self:stretch\n}\n\n.swal2-container.swal2-no-transition{\n  transition:none!important\n}\n\n.swal2-popup{\n  display:none;\n  position:relative;\n  box-sizing:border-box;\n  width:32em;\n  max-width:100%;\n  padding:0 0 1.25em;\n  border:none;\n  border-radius:5px;\n  background:#fff;\n  font-family:inherit;\n  font-size:1rem\n}\n\n.swal2-popup:focus{\n  outline:0\n}\n\n.swal2-popup.swal2-loading{\n  overflow-y:hidden\n}\n\n.swal2-title{\n  position:relative;\n  max-width:100%;\n  margin:0;\n  padding:.8em 1em 0;\n  color:#595959;\n  font-size:1.875em;\n  font-weight:600;\n  text-align:center;\n  text-transform:none;\n  word-wrap:break-word\n}\n\n.swal2-actions{\n  display:flex;\n  z-index:1;\n  box-sizing:border-box;\n  flex-wrap:wrap;\n  align-items:center;\n  justify-content:center;\n  width:100%;\n  margin:1.25em auto 0;\n  padding:0\n}\n\n.swal2-actions:not(.swal2-loading) .swal2-styled[disabled]{\n  opacity:.4\n}\n\n.swal2-actions:not(.swal2-loading) .swal2-styled:hover{\n  background-image:linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1))\n}\n\n.swal2-actions:not(.swal2-loading) .swal2-styled:active{\n  background-image:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2))\n}\n\n.swal2-loader{\n  display:none;\n  align-items:center;\n  justify-content:center;\n  width:2.2em;\n  height:2.2em;\n  margin:0 1.875em;\n  -webkit-animation:swal2-rotate-loading 1.5s linear 0s infinite normal;\n  animation:swal2-rotate-loading 1.5s linear 0s infinite normal;\n  border-width:.25em;\n  border-style:solid;\n  border-radius:100%;\n  border-color:#2778c4 transparent #2778c4 transparent\n}\n\n.swal2-styled{\n  margin:.3125em;\n  padding:.625em 1.1em;\n  transition:box-shadow .1s;\n  box-shadow:0 0 0 3px transparent;\n  font-weight:500\n}\n\n.swal2-styled:not([disabled]){\n  cursor:pointer\n}\n\n.swal2-styled.swal2-confirm{\n  border:0;\n  border-radius:.25em;\n  background:initial;\n  background-color:#7367f0;\n  color:#fff;\n  font-size:1em\n}\n\n.swal2-styled.swal2-confirm:focus{\n  box-shadow:0 0 0 3px rgba(115,103,240,.5)\n}\n\n.swal2-styled.swal2-deny{\n  border:0;\n  border-radius:.25em;\n  background:initial;\n  background-color:#ea5455;\n  color:#fff;\n  font-size:1em\n}\n\n.swal2-styled.swal2-deny:focus{\n  box-shadow:0 0 0 3px rgba(234,84,85,.5)\n}\n\n.swal2-styled.swal2-cancel{\n  border:0;\n  border-radius:.25em;\n  background:initial;\n  background-color:#6e7d88;\n  color:#fff;\n  font-size:1em\n}\n\n.swal2-styled.swal2-cancel:focus{\n  box-shadow:0 0 0 3px rgba(110,125,136,.5)\n}\n\n.swal2-styled.swal2-default-outline:focus{\n  box-shadow:0 0 0 3px rgba(100,150,200,.5)\n}\n\n.swal2-styled:focus{\n  outline:0\n}\n\n.swal2-styled::-moz-focus-inner{\n  border:0\n}\n\n.swal2-footer{\n  justify-content:center;\n  margin:1em 0 0;\n  padding:1em 1em 0;\n  border-top:1px solid #eee;\n  color:#545454;\n  font-size:1em\n}\n\n.swal2-timer-progress-bar-container{\n  position:absolute;\n  right:0;\n  bottom:0;\n  left:0;\n  grid-column:auto!important;\n  height:.25em;\n  overflow:hidden;\n  border-bottom-right-radius:5px;\n  border-bottom-left-radius:5px\n}\n\n.swal2-timer-progress-bar{\n  width:100%;\n  height:.25em;\n  background:rgba(0,0,0,.2)\n}\n\n.swal2-image{\n  max-width:100%;\n  margin:2em auto 1em\n}\n\n.swal2-close{\n  z-index:2;\n  align-items:center;\n  justify-content:center;\n  width:1.2em;\n  height:1.2em;\n  margin-top:0;\n  margin-right:0;\n  margin-bottom:-1.2em;\n  padding:0;\n  overflow:hidden;\n  transition:color .1s,box-shadow .1s;\n  border:none;\n  border-radius:5px;\n  background:0 0;\n  color:#ccc;\n  font-family:serif;\n  font-family:monospace;\n  font-size:2.5em;\n  cursor:pointer;\n  justify-self:end\n}\n\n.swal2-close:hover{\n  transform:none;\n  background:0 0;\n  color:#f27474\n}\n\n.swal2-close:focus{\n  outline:0;\n  box-shadow:inset 0 0 0 3px rgba(100,150,200,.5)\n}\n\n.swal2-close::-moz-focus-inner{\n  border:0\n}\n\n.swal2-html-container{\n  z-index:1;\n  justify-content:center;\n  margin:0;\n  padding:1em 1.6em .3em;\n  color:#545454;\n  font-size:1.125em;\n  font-weight:400;\n  line-height:normal;\n  text-align:center;\n  word-wrap:break-word\n}\n\n.swal2-checkbox,.swal2-file,.swal2-input,.swal2-radio,.swal2-select,.swal2-textarea{\n  margin:1em 2em 0\n}\n\n.swal2-file,.swal2-input,.swal2-textarea{\n  box-sizing:border-box;\n  width:auto;\n  transition:border-color .1s,box-shadow .1s;\n  border:1px solid #d9d9d9;\n  border-radius:.1875em;\n  background:inherit;\n  box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px transparent;\n  color:inherit;\n  font-size:1.125em\n}\n\n.swal2-file.swal2-inputerror,.swal2-input.swal2-inputerror,.swal2-textarea.swal2-inputerror{\n  border-color:#f27474!important;\n  box-shadow:0 0 2px #f27474!important\n}\n\n.swal2-file:focus,.swal2-input:focus,.swal2-textarea:focus{\n  border:1px solid #b4dbed;\n  outline:0;\n  box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(100,150,200,.5)\n}\n\n.swal2-file::-moz-placeholder,.swal2-input::-moz-placeholder,.swal2-textarea::-moz-placeholder{\n  color:#ccc\n}\n\n.swal2-file:-ms-input-placeholder,.swal2-input:-ms-input-placeholder,.swal2-textarea:-ms-input-placeholder{\n  color:#ccc\n}\n\n.swal2-file::-webkit-input-placeholder, .swal2-input::-webkit-input-placeholder, .swal2-textarea::-webkit-input-placeholder{\n  color:#ccc\n}\n\n.swal2-file::-moz-placeholder, .swal2-input::-moz-placeholder, .swal2-textarea::-moz-placeholder{\n  color:#ccc\n}\n\n.swal2-file:-ms-input-placeholder, .swal2-input:-ms-input-placeholder, .swal2-textarea:-ms-input-placeholder{\n  color:#ccc\n}\n\n.swal2-file::-ms-input-placeholder, .swal2-input::-ms-input-placeholder, .swal2-textarea::-ms-input-placeholder{\n  color:#ccc\n}\n\n.swal2-file::placeholder,.swal2-input::placeholder,.swal2-textarea::placeholder{\n  color:#ccc\n}\n\n.swal2-range{\n  margin:1em 2em 0;\n  background:#fff\n}\n\n.swal2-range input{\n  width:80%\n}\n\n.swal2-range output{\n  width:20%;\n  color:inherit;\n  font-weight:600;\n  text-align:center\n}\n\n.swal2-range input,.swal2-range output{\n  height:2.625em;\n  padding:0;\n  font-size:1.125em;\n  line-height:2.625em\n}\n\n.swal2-input{\n  height:2.625em;\n  padding:0 .75em\n}\n\n.swal2-input[type=number]{\n  max-width:10em\n}\n\n.swal2-file{\n  width:75%;\n  margin-right:auto;\n  margin-left:auto;\n  background:inherit;\n  font-size:1.125em\n}\n\n.swal2-textarea{\n  height:6.75em;\n  padding:.75em\n}\n\n.swal2-select{\n  min-width:50%;\n  max-width:100%;\n  padding:.375em .625em;\n  background:inherit;\n  color:inherit;\n  font-size:1.125em\n}\n\n.swal2-checkbox,.swal2-radio{\n  align-items:center;\n  justify-content:center;\n  background:#fff;\n  color:inherit\n}\n\n.swal2-checkbox label,.swal2-radio label{\n  margin:0 .6em;\n  font-size:1.125em\n}\n\n.swal2-checkbox input,.swal2-radio input{\n  flex-shrink:0;\n  margin:0 .4em\n}\n\n.swal2-input-label{\n  display:flex;\n  justify-content:center;\n  margin:1em auto 0\n}\n\n.swal2-validation-message{\n  align-items:center;\n  justify-content:center;\n  margin:1em 0 0;\n  padding:.625em;\n  overflow:hidden;\n  background:#f0f0f0;\n  color:#666;\n  font-size:1em;\n  font-weight:300\n}\n\n.swal2-validation-message::before{\n  content:\"!\";\n  display:inline-block;\n  width:1.5em;\n  min-width:1.5em;\n  height:1.5em;\n  margin:0 .625em;\n  border-radius:50%;\n  background-color:#f27474;\n  color:#fff;\n  font-weight:600;\n  line-height:1.5em;\n  text-align:center\n}\n\n.swal2-icon{\n  position:relative;\n  box-sizing:content-box;\n  justify-content:center;\n  width:5em;\n  height:5em;\n  margin:2.5em auto .6em;\n  border:.25em solid transparent;\n  border-radius:50%;\n  border-color:#000;\n  font-family:inherit;\n  line-height:5em;\n  cursor:default;\n  -webkit-user-select:none;\n  -moz-user-select:none;\n  -ms-user-select:none;\n  user-select:none\n}\n\n.swal2-icon .swal2-icon-content{\n  display:flex;\n  align-items:center;\n  font-size:3.75em\n}\n\n.swal2-icon.swal2-error{\n  border-color:#f27474;\n  color:#f27474\n}\n\n.swal2-icon.swal2-error .swal2-x-mark{\n  position:relative;\n  flex-grow:1\n}\n\n.swal2-icon.swal2-error [class^=swal2-x-mark-line]{\n  display:block;\n  position:absolute;\n  top:2.3125em;\n  width:2.9375em;\n  height:.3125em;\n  border-radius:.125em;\n  background-color:#f27474\n}\n\n.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{\n  left:1.0625em;\n  transform:rotate(45deg)\n}\n\n.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{\n  right:1em;\n  transform:rotate(-45deg)\n}\n\n.swal2-icon.swal2-error.swal2-icon-show{\n  -webkit-animation:swal2-animate-error-icon .5s;\n  animation:swal2-animate-error-icon .5s\n}\n\n.swal2-icon.swal2-error.swal2-icon-show .swal2-x-mark{\n  -webkit-animation:swal2-animate-error-x-mark .5s;\n  animation:swal2-animate-error-x-mark .5s\n}\n\n.swal2-icon.swal2-warning{\n  border-color:#facea8;\n  color:#f8bb86\n}\n\n.swal2-icon.swal2-info{\n  border-color:#9de0f6;\n  color:#3fc3ee\n}\n\n.swal2-icon.swal2-question{\n  border-color:#c9dae1;\n  color:#87adbd\n}\n\n.swal2-icon.swal2-success{\n  border-color:#a5dc86;\n  color:#a5dc86\n}\n\n.swal2-icon.swal2-success [class^=swal2-success-circular-line]{\n  position:absolute;\n  width:3.75em;\n  height:7.5em;\n  transform:rotate(45deg);\n  border-radius:50%\n}\n\n.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=left]{\n  top:-.4375em;\n  left:-2.0635em;\n  transform:rotate(-45deg);\n  transform-origin:3.75em 3.75em;\n  border-radius:7.5em 0 0 7.5em\n}\n\n.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=right]{\n  top:-.6875em;\n  left:1.875em;\n  transform:rotate(-45deg);\n  transform-origin:0 3.75em;\n  border-radius:0 7.5em 7.5em 0\n}\n\n.swal2-icon.swal2-success .swal2-success-ring{\n  position:absolute;\n  z-index:2;\n  top:-.25em;\n  left:-.25em;\n  box-sizing:content-box;\n  width:100%;\n  height:100%;\n  border:.25em solid rgba(165,220,134,.3);\n  border-radius:50%\n}\n\n.swal2-icon.swal2-success .swal2-success-fix{\n  position:absolute;\n  z-index:1;\n  top:.5em;\n  left:1.625em;\n  width:.4375em;\n  height:5.625em;\n  transform:rotate(-45deg)\n}\n\n.swal2-icon.swal2-success [class^=swal2-success-line]{\n  display:block;\n  position:absolute;\n  z-index:2;\n  height:.3125em;\n  border-radius:.125em;\n  background-color:#a5dc86\n}\n\n.swal2-icon.swal2-success [class^=swal2-success-line][class$=tip]{\n  top:2.875em;\n  left:.8125em;\n  width:1.5625em;\n  transform:rotate(45deg)\n}\n\n.swal2-icon.swal2-success [class^=swal2-success-line][class$=long]{\n  top:2.375em;\n  right:.5em;\n  width:2.9375em;\n  transform:rotate(-45deg)\n}\n\n.swal2-icon.swal2-success.swal2-icon-show .swal2-success-line-tip{\n  -webkit-animation:swal2-animate-success-line-tip .75s;\n  animation:swal2-animate-success-line-tip .75s\n}\n\n.swal2-icon.swal2-success.swal2-icon-show .swal2-success-line-long{\n  -webkit-animation:swal2-animate-success-line-long .75s;\n  animation:swal2-animate-success-line-long .75s\n}\n\n.swal2-icon.swal2-success.swal2-icon-show .swal2-success-circular-line-right{\n  -webkit-animation:swal2-rotate-success-circular-line 4.25s ease-in;\n  animation:swal2-rotate-success-circular-line 4.25s ease-in\n}\n\n.swal2-progress-steps{\n  flex-wrap:wrap;\n  align-items:center;\n  max-width:100%;\n  margin:1.25em auto;\n  padding:0;\n  background:inherit;\n  font-weight:600\n}\n\n.swal2-progress-steps li{\n  display:inline-block;\n  position:relative\n}\n\n.swal2-progress-steps .swal2-progress-step{\n  z-index:20;\n  flex-shrink:0;\n  width:2em;\n  height:2em;\n  border-radius:2em;\n  background:#2778c4;\n  color:#fff;\n  line-height:2em;\n  text-align:center\n}\n\n.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{\n  background:#2778c4\n}\n\n.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{\n  background:#add8e6;\n  color:#fff\n}\n\n.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{\n  background:#add8e6\n}\n\n.swal2-progress-steps .swal2-progress-step-line{\n  z-index:10;\n  flex-shrink:0;\n  width:2.5em;\n  height:.4em;\n  margin:0 -1px;\n  background:#2778c4\n}\n\n[class^=swal2]{\n  -webkit-tap-highlight-color:transparent\n}\n\n.swal2-show{\n  -webkit-animation:swal2-show .3s;\n  animation:swal2-show .3s\n}\n\n.swal2-hide{\n  -webkit-animation:swal2-hide .15s forwards;\n  animation:swal2-hide .15s forwards\n}\n\n.swal2-noanimation{\n  transition:none\n}\n\n.swal2-scrollbar-measure{\n  position:absolute;\n  top:-9999px;\n  width:50px;\n  height:50px;\n  overflow:scroll\n}\n\n.swal2-rtl .swal2-close{\n  margin-right:initial;\n  margin-left:0\n}\n\n.swal2-rtl .swal2-timer-progress-bar{\n  right:0;\n  left:auto\n}\n\n@-webkit-keyframes swal2-toast-show{\n  0%{\n    transform:translateY(-.625em) rotateZ(2deg)\n  }\n\n  33%{\n    transform:translateY(0) rotateZ(-2deg)\n  }\n\n  66%{\n    transform:translateY(.3125em) rotateZ(2deg)\n  }\n\n  100%{\n    transform:translateY(0) rotateZ(0)\n  }\n}\n\n@keyframes swal2-toast-show{\n  0%{\n    transform:translateY(-.625em) rotateZ(2deg)\n  }\n\n  33%{\n    transform:translateY(0) rotateZ(-2deg)\n  }\n\n  66%{\n    transform:translateY(.3125em) rotateZ(2deg)\n  }\n\n  100%{\n    transform:translateY(0) rotateZ(0)\n  }\n}\n\n@-webkit-keyframes swal2-toast-hide{\n  100%{\n    transform:rotateZ(1deg);\n    opacity:0\n  }\n}\n\n@keyframes swal2-toast-hide{\n  100%{\n    transform:rotateZ(1deg);\n    opacity:0\n  }\n}\n\n@-webkit-keyframes swal2-toast-animate-success-line-tip{\n  0%{\n    top:.5625em;\n    left:.0625em;\n    width:0\n  }\n\n  54%{\n    top:.125em;\n    left:.125em;\n    width:0\n  }\n\n  70%{\n    top:.625em;\n    left:-.25em;\n    width:1.625em\n  }\n\n  84%{\n    top:1.0625em;\n    left:.75em;\n    width:.5em\n  }\n\n  100%{\n    top:1.125em;\n    left:.1875em;\n    width:.75em\n  }\n}\n\n@keyframes swal2-toast-animate-success-line-tip{\n  0%{\n    top:.5625em;\n    left:.0625em;\n    width:0\n  }\n\n  54%{\n    top:.125em;\n    left:.125em;\n    width:0\n  }\n\n  70%{\n    top:.625em;\n    left:-.25em;\n    width:1.625em\n  }\n\n  84%{\n    top:1.0625em;\n    left:.75em;\n    width:.5em\n  }\n\n  100%{\n    top:1.125em;\n    left:.1875em;\n    width:.75em\n  }\n}\n\n@-webkit-keyframes swal2-toast-animate-success-line-long{\n  0%{\n    top:1.625em;\n    right:1.375em;\n    width:0\n  }\n\n  65%{\n    top:1.25em;\n    right:.9375em;\n    width:0\n  }\n\n  84%{\n    top:.9375em;\n    right:0;\n    width:1.125em\n  }\n\n  100%{\n    top:.9375em;\n    right:.1875em;\n    width:1.375em\n  }\n}\n\n@keyframes swal2-toast-animate-success-line-long{\n  0%{\n    top:1.625em;\n    right:1.375em;\n    width:0\n  }\n\n  65%{\n    top:1.25em;\n    right:.9375em;\n    width:0\n  }\n\n  84%{\n    top:.9375em;\n    right:0;\n    width:1.125em\n  }\n\n  100%{\n    top:.9375em;\n    right:.1875em;\n    width:1.375em\n  }\n}\n\n@-webkit-keyframes swal2-show{\n  0%{\n    transform:scale(.7)\n  }\n\n  45%{\n    transform:scale(1.05)\n  }\n\n  80%{\n    transform:scale(.95)\n  }\n\n  100%{\n    transform:scale(1)\n  }\n}\n\n@keyframes swal2-show{\n  0%{\n    transform:scale(.7)\n  }\n\n  45%{\n    transform:scale(1.05)\n  }\n\n  80%{\n    transform:scale(.95)\n  }\n\n  100%{\n    transform:scale(1)\n  }\n}\n\n@-webkit-keyframes swal2-hide{\n  0%{\n    transform:scale(1);\n    opacity:1\n  }\n\n  100%{\n    transform:scale(.5);\n    opacity:0\n  }\n}\n\n@keyframes swal2-hide{\n  0%{\n    transform:scale(1);\n    opacity:1\n  }\n\n  100%{\n    transform:scale(.5);\n    opacity:0\n  }\n}\n\n@-webkit-keyframes swal2-animate-success-line-tip{\n  0%{\n    top:1.1875em;\n    left:.0625em;\n    width:0\n  }\n\n  54%{\n    top:1.0625em;\n    left:.125em;\n    width:0\n  }\n\n  70%{\n    top:2.1875em;\n    left:-.375em;\n    width:3.125em\n  }\n\n  84%{\n    top:3em;\n    left:1.3125em;\n    width:1.0625em\n  }\n\n  100%{\n    top:2.8125em;\n    left:.8125em;\n    width:1.5625em\n  }\n}\n\n@keyframes swal2-animate-success-line-tip{\n  0%{\n    top:1.1875em;\n    left:.0625em;\n    width:0\n  }\n\n  54%{\n    top:1.0625em;\n    left:.125em;\n    width:0\n  }\n\n  70%{\n    top:2.1875em;\n    left:-.375em;\n    width:3.125em\n  }\n\n  84%{\n    top:3em;\n    left:1.3125em;\n    width:1.0625em\n  }\n\n  100%{\n    top:2.8125em;\n    left:.8125em;\n    width:1.5625em\n  }\n}\n\n@-webkit-keyframes swal2-animate-success-line-long{\n  0%{\n    top:3.375em;\n    right:2.875em;\n    width:0\n  }\n\n  65%{\n    top:3.375em;\n    right:2.875em;\n    width:0\n  }\n\n  84%{\n    top:2.1875em;\n    right:0;\n    width:3.4375em\n  }\n\n  100%{\n    top:2.375em;\n    right:.5em;\n    width:2.9375em\n  }\n}\n\n@keyframes swal2-animate-success-line-long{\n  0%{\n    top:3.375em;\n    right:2.875em;\n    width:0\n  }\n\n  65%{\n    top:3.375em;\n    right:2.875em;\n    width:0\n  }\n\n  84%{\n    top:2.1875em;\n    right:0;\n    width:3.4375em\n  }\n\n  100%{\n    top:2.375em;\n    right:.5em;\n    width:2.9375em\n  }\n}\n\n@-webkit-keyframes swal2-rotate-success-circular-line{\n  0%{\n    transform:rotate(-45deg)\n  }\n\n  5%{\n    transform:rotate(-45deg)\n  }\n\n  12%{\n    transform:rotate(-405deg)\n  }\n\n  100%{\n    transform:rotate(-405deg)\n  }\n}\n\n@keyframes swal2-rotate-success-circular-line{\n  0%{\n    transform:rotate(-45deg)\n  }\n\n  5%{\n    transform:rotate(-45deg)\n  }\n\n  12%{\n    transform:rotate(-405deg)\n  }\n\n  100%{\n    transform:rotate(-405deg)\n  }\n}\n\n@-webkit-keyframes swal2-animate-error-x-mark{\n  0%{\n    margin-top:1.625em;\n    transform:scale(.4);\n    opacity:0\n  }\n\n  50%{\n    margin-top:1.625em;\n    transform:scale(.4);\n    opacity:0\n  }\n\n  80%{\n    margin-top:-.375em;\n    transform:scale(1.15)\n  }\n\n  100%{\n    margin-top:0;\n    transform:scale(1);\n    opacity:1\n  }\n}\n\n@keyframes swal2-animate-error-x-mark{\n  0%{\n    margin-top:1.625em;\n    transform:scale(.4);\n    opacity:0\n  }\n\n  50%{\n    margin-top:1.625em;\n    transform:scale(.4);\n    opacity:0\n  }\n\n  80%{\n    margin-top:-.375em;\n    transform:scale(1.15)\n  }\n\n  100%{\n    margin-top:0;\n    transform:scale(1);\n    opacity:1\n  }\n}\n\n@-webkit-keyframes swal2-animate-error-icon{\n  0%{\n    transform:rotateX(100deg);\n    opacity:0\n  }\n\n  100%{\n    transform:rotateX(0);\n    opacity:1\n  }\n}\n\n@keyframes swal2-animate-error-icon{\n  0%{\n    transform:rotateX(100deg);\n    opacity:0\n  }\n\n  100%{\n    transform:rotateX(0);\n    opacity:1\n  }\n}\n\n@-webkit-keyframes swal2-rotate-loading{\n  0%{\n    transform:rotate(0)\n  }\n\n  100%{\n    transform:rotate(360deg)\n  }\n}\n\n@keyframes swal2-rotate-loading{\n  0%{\n    transform:rotate(0)\n  }\n\n  100%{\n    transform:rotate(360deg)\n  }\n}\n\nbody.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){\n  overflow:hidden\n}\n\nbody.swal2-height-auto{\n  height:auto!important\n}\n\nbody.swal2-no-backdrop .swal2-container{\n  top:auto;\n  right:auto;\n  bottom:auto;\n  left:auto;\n  max-width:calc(100% - .625em * 2);\n  background-color:transparent!important\n}\n\nbody.swal2-no-backdrop .swal2-container>.swal2-modal{\n  box-shadow:0 0 10px rgba(0,0,0,.4)\n}\n\nbody.swal2-no-backdrop .swal2-container.swal2-top{\n  top:0;\n  left:50%;\n  transform:translateX(-50%)\n}\n\nbody.swal2-no-backdrop .swal2-container.swal2-top-left,body.swal2-no-backdrop .swal2-container.swal2-top-start{\n  top:0;\n  left:0\n}\n\nbody.swal2-no-backdrop .swal2-container.swal2-top-end,body.swal2-no-backdrop .swal2-container.swal2-top-right{\n  top:0;\n  right:0\n}\n\nbody.swal2-no-backdrop .swal2-container.swal2-center{\n  top:50%;\n  left:50%;\n  transform:translate(-50%,-50%)\n}\n\nbody.swal2-no-backdrop .swal2-container.swal2-center-left,body.swal2-no-backdrop .swal2-container.swal2-center-start{\n  top:50%;\n  left:0;\n  transform:translateY(-50%)\n}\n\nbody.swal2-no-backdrop .swal2-container.swal2-center-end,body.swal2-no-backdrop .swal2-container.swal2-center-right{\n  top:50%;\n  right:0;\n  transform:translateY(-50%)\n}\n\nbody.swal2-no-backdrop .swal2-container.swal2-bottom{\n  bottom:0;\n  left:50%;\n  transform:translateX(-50%)\n}\n\nbody.swal2-no-backdrop .swal2-container.swal2-bottom-left,body.swal2-no-backdrop .swal2-container.swal2-bottom-start{\n  bottom:0;\n  left:0\n}\n\nbody.swal2-no-backdrop .swal2-container.swal2-bottom-end,body.swal2-no-backdrop .swal2-container.swal2-bottom-right{\n  right:0;\n  bottom:0\n}\n\n@media print{\n  body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){\n    overflow-y:scroll!important\n  }\n\n  body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true]{\n    display:none\n  }\n\n  body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container{\n    position:static!important\n  }\n}\n\nbody.swal2-toast-shown .swal2-container{\n  box-sizing:border-box;\n  width:360px;\n  max-width:100%;\n  background-color:transparent\n}\n\nbody.swal2-toast-shown .swal2-container.swal2-top{\n  top:0;\n  right:auto;\n  bottom:auto;\n  left:50%;\n  transform:translateX(-50%)\n}\n\nbody.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{\n  top:0;\n  right:0;\n  bottom:auto;\n  left:auto\n}\n\nbody.swal2-toast-shown .swal2-container.swal2-top-left,body.swal2-toast-shown .swal2-container.swal2-top-start{\n  top:0;\n  right:auto;\n  bottom:auto;\n  left:0\n}\n\nbody.swal2-toast-shown .swal2-container.swal2-center-left,body.swal2-toast-shown .swal2-container.swal2-center-start{\n  top:50%;\n  right:auto;\n  bottom:auto;\n  left:0;\n  transform:translateY(-50%)\n}\n\nbody.swal2-toast-shown .swal2-container.swal2-center{\n  top:50%;\n  right:auto;\n  bottom:auto;\n  left:50%;\n  transform:translate(-50%,-50%)\n}\n\nbody.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{\n  top:50%;\n  right:0;\n  bottom:auto;\n  left:auto;\n  transform:translateY(-50%)\n}\n\nbody.swal2-toast-shown .swal2-container.swal2-bottom-left,body.swal2-toast-shown .swal2-container.swal2-bottom-start{\n  top:auto;\n  right:auto;\n  bottom:0;\n  left:0\n}\n\nbody.swal2-toast-shown .swal2-container.swal2-bottom{\n  top:auto;\n  right:auto;\n  bottom:0;\n  left:50%;\n  transform:translateX(-50%)\n}\n\nbody.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{\n  top:auto;\n  right:0;\n  bottom:0;\n  left:auto\n}", ""]);
 
 // exports
 
@@ -38841,15 +38721,331 @@ module.exports = function (css) {
 
 /***/ }),
 
-/***/ "./node_modules/sweetalert2/dist/sweetalert2.js":
-/*!******************************************************!*\
-  !*** ./node_modules/sweetalert2/dist/sweetalert2.js ***!
-  \******************************************************/
+/***/ "./node_modules/sweetalert2/dist/sweetalert2.min.css":
+/*!***********************************************************!*\
+  !*** ./node_modules/sweetalert2/dist/sweetalert2.min.css ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../css-loader??ref--11-1!../../postcss-loader/src??ref--11-2!./sweetalert2.min.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/sweetalert2/dist/sweetalert2.min.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/timers-browserify/main.js":
+/*!************************************************!*\
+  !*** ./node_modules/timers-browserify/main.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
+            (typeof self !== "undefined" && self) ||
+            window;
+var apply = Function.prototype.apply;
+
+// DOM APIs, for completeness
+
+exports.setTimeout = function() {
+  return new Timeout(apply.call(setTimeout, scope, arguments), clearTimeout);
+};
+exports.setInterval = function() {
+  return new Timeout(apply.call(setInterval, scope, arguments), clearInterval);
+};
+exports.clearTimeout =
+exports.clearInterval = function(timeout) {
+  if (timeout) {
+    timeout.close();
+  }
+};
+
+function Timeout(id, clearFn) {
+  this._id = id;
+  this._clearFn = clearFn;
+}
+Timeout.prototype.unref = Timeout.prototype.ref = function() {};
+Timeout.prototype.close = function() {
+  this._clearFn.call(scope, this._id);
+};
+
+// Does not start the time, just sets up the members needed.
+exports.enroll = function(item, msecs) {
+  clearTimeout(item._idleTimeoutId);
+  item._idleTimeout = msecs;
+};
+
+exports.unenroll = function(item) {
+  clearTimeout(item._idleTimeoutId);
+  item._idleTimeout = -1;
+};
+
+exports._unrefActive = exports.active = function(item) {
+  clearTimeout(item._idleTimeoutId);
+
+  var msecs = item._idleTimeout;
+  if (msecs >= 0) {
+    item._idleTimeoutId = setTimeout(function onTimeout() {
+      if (item._onTimeout)
+        item._onTimeout();
+    }, msecs);
+  }
+};
+
+// setimmediate attaches itself to the global object
+__webpack_require__(/*! setimmediate */ "./node_modules/setimmediate/setImmediate.js");
+// On some exotic environments, it's not clear which object `setimmediate` was
+// able to install onto.  Search each possibility in the same order as the
+// `setimmediate` library.
+exports.setImmediate = (typeof self !== "undefined" && self.setImmediate) ||
+                       (typeof global !== "undefined" && global.setImmediate) ||
+                       (this && this.setImmediate);
+exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
+                         (typeof global !== "undefined" && global.clearImmediate) ||
+                         (this && this.clearImmediate);
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ListaSkills.vue?vue&type=template&id=5ad4820a&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ListaSkills.vue?vue&type=template&id=5ad4820a& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "ul",
+      { staticClass: "flex flex-wrap justify-center" },
+      _vm._l(this.skills, function(skill, i) {
+        return _c(
+          "li",
+          {
+            key: i,
+            staticClass: "border border-gray-500 px-10 py-3 mb-3 rounded mr-4",
+            class: _vm.verificarClaseActiva(skill),
+            on: {
+              click: function($event) {
+                return _vm.activar($event)
+              }
+            }
+          },
+          [_vm._v(_vm._s(skill))]
+        )
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c("input", { attrs: { type: "hidden", name: "skills", id: "skills" } })
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode /* vue-cli only */
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () {
+        injectStyles.call(
+          this,
+          (options.functional ? this.parent : this).$root.$options.shadowRoot
+        )
+      }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functional component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-sweetalert2/dist/index.js":
+/*!****************************************************!*\
+  !*** ./node_modules/vue-sweetalert2/dist/index.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/vue-sweetalert2/node_modules/sweetalert2/dist/sweetalert2.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0__);
+
+var VueSweetalert2 = (function () {
+    function VueSweetalert2() {
+    }
+    VueSweetalert2.install = function (vue, options) {
+        var swalLocalInstance = options ? sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0___default.a.mixin(options) : sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0___default.a;
+        var swalFunction = function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return swalLocalInstance.fire.apply(swalLocalInstance, args);
+        };
+        var methodName;
+        for (methodName in swalLocalInstance) {
+            if (Object.prototype.hasOwnProperty.call(swalLocalInstance, methodName) &&
+                typeof swalLocalInstance[methodName] === 'function') {
+                swalFunction[methodName] = (function (method) {
+                    return function () {
+                        var args = [];
+                        for (var _i = 0; _i < arguments.length; _i++) {
+                            args[_i] = arguments[_i];
+                        }
+                        return swalLocalInstance[method].apply(swalLocalInstance, args);
+                    };
+                })(methodName);
+            }
+        }
+        vue['swal'] = swalFunction;
+        if (!vue.prototype.hasOwnProperty('$swal')) {
+            vue.prototype.$swal = swalFunction;
+        }
+    };
+    return VueSweetalert2;
+}());
+/* harmony default export */ __webpack_exports__["default"] = (VueSweetalert2);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/vue-sweetalert2/node_modules/sweetalert2/dist/sweetalert2.js":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/vue-sweetalert2/node_modules/sweetalert2/dist/sweetalert2.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
-* sweetalert2 v9.10.13
+* sweetalert2 v9.17.2
 * Released under the MIT License.
 */
 (function (global, factory) {
@@ -38993,7 +39189,7 @@ module.exports = function (css) {
   function _createSuper(Derived) {
     var hasNativeReflectConstruct = _isNativeReflectConstruct();
 
-    return function () {
+    return function _createSuperInternal() {
       var Super = _getPrototypeOf(Derived),
           result;
 
@@ -39065,7 +39261,7 @@ module.exports = function (css) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
   /**
-   * Returns the array ob object values (Object.values isn't supported in IE11)
+   * Returns the array of object values (Object.values isn't supported in IE11)
    * @param obj
    */
 
@@ -39131,6 +39327,12 @@ module.exports = function (css) {
 
   var callIfFunction = function callIfFunction(arg) {
     return typeof arg === 'function' ? arg() : arg;
+  };
+  var hasToPromiseFn = function hasToPromiseFn(arg) {
+    return arg && typeof arg.toPromise === 'function';
+  };
+  var asPromise = function asPromise(arg) {
+    return hasToPromiseFn(arg) ? arg.toPromise() : Promise.resolve(arg);
   };
   var isPromise = function isPromise(arg) {
     return arg && Promise.resolve(arg) === arg;
@@ -40061,7 +40263,7 @@ module.exports = function (css) {
       return hide(image);
     }
 
-    show(image); // Src, alt
+    show(image, ''); // Src, alt
 
     image.setAttribute('src', params.imageUrl);
     image.setAttribute('alt', params.imageAlt); // Width, height
@@ -40180,7 +40382,7 @@ module.exports = function (css) {
       }
 
       if (index !== params.progressSteps.length - 1) {
-        var lineEl = createLineElement(step);
+        var lineEl = createLineElement(params);
         progressStepsContainer.appendChild(lineEl);
       }
     });
@@ -40538,7 +40740,7 @@ module.exports = function (css) {
     onDestroy: undefined,
     scrollbarPadding: true
   };
-  var updatableParams = ['title', 'titleText', 'text', 'html', 'icon', 'hideClass', 'customClass', 'allowOutsideClick', 'allowEscapeKey', 'showConfirmButton', 'showCancelButton', 'confirmButtonText', 'confirmButtonAriaLabel', 'confirmButtonColor', 'cancelButtonText', 'cancelButtonAriaLabel', 'cancelButtonColor', 'buttonsStyling', 'reverseButtons', 'imageUrl', 'imageWidth', 'imageHeight', 'imageAlt', 'progressSteps', 'currentProgressStep'];
+  var updatableParams = ['allowEscapeKey', 'allowOutsideClick', 'buttonsStyling', 'cancelButtonAriaLabel', 'cancelButtonColor', 'cancelButtonText', 'closeButtonAriaLabel', 'closeButtonHtml', 'confirmButtonAriaLabel', 'confirmButtonColor', 'confirmButtonText', 'currentProgressStep', 'customClass', 'footer', 'hideClass', 'html', 'icon', 'imageAlt', 'imageHeight', 'imageUrl', 'imageWidth', 'onAfterClose', 'onClose', 'onDestroy', 'progressSteps', 'reverseButtons', 'showCancelButton', 'showCloseButton', 'showConfirmButton', 'text', 'title', 'titleText'];
   var deprecatedParams = {
     animation: 'showClass" and "hideClass'
   };
@@ -40718,6 +40920,19 @@ module.exports = function (css) {
       document.body.style.top = "".concat(offset * -1, "px");
       addClass(document.body, swalClasses.iosfix);
       lockBodyScroll();
+      addBottomPaddingForTallPopups(); // #1948
+    }
+  };
+
+  var addBottomPaddingForTallPopups = function addBottomPaddingForTallPopups() {
+    var safari = !navigator.userAgent.match(/(CriOS|FxiOS|EdgiOS|YaBrowser|UCBrowser)/i);
+
+    if (safari) {
+      var bottomPanelHeight = 44;
+
+      if (getPopup().scrollHeight > window.innerHeight - bottomPanelHeight) {
+        getContainer().style.paddingBottom = "".concat(bottomPanelHeight, "px");
+      }
     }
   };
 
@@ -40889,7 +41104,18 @@ module.exports = function (css) {
     var backdrop = getContainer();
     removeClass(backdrop, innerParams.showClass.backdrop);
     addClass(backdrop, innerParams.hideClass.backdrop);
-    handlePopupAnimation(this, popup, innerParams); // Resolve Swal promise
+    handlePopupAnimation(this, popup, innerParams);
+
+    if (typeof resolveValue !== 'undefined') {
+      resolveValue.isDismissed = typeof resolveValue.dismiss !== 'undefined';
+      resolveValue.isConfirmed = typeof resolveValue.dismiss === 'undefined';
+    } else {
+      resolveValue = {
+        isDismissed: true,
+        isConfirmed: false
+      };
+    } // Resolve Swal promise
+
 
     swalPromiseResolve(resolveValue || {});
   }
@@ -41082,8 +41308,8 @@ module.exports = function (css) {
       return /^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9-]{2,24}$/.test(string) ? Promise.resolve() : Promise.resolve(validationMessage || 'Invalid email address');
     },
     url: function url(string, validationMessage) {
-      // taken from https://stackoverflow.com/a/3809435 with a small change from #1306
-      return /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,63}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)$/.test(string) ? Promise.resolve() : Promise.resolve(validationMessage || 'Invalid URL');
+      // taken from https://stackoverflow.com/a/3809435 with a small change from #1306 and #2013
+      return /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-z]{2,63}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)$/.test(string) ? Promise.resolve() : Promise.resolve(validationMessage || 'Invalid URL');
     }
   };
 
@@ -41148,12 +41374,15 @@ module.exports = function (css) {
       params.onBeforeOpen(popup);
     }
 
+    var bodyStyles = window.getComputedStyle(document.body);
+    var initialBodyOverflow = bodyStyles.overflowY;
     addClasses$1(container, popup, params); // scrolling is 'hidden' until animation is done, after that 'auto'
 
     setScrollingVisibility(container, popup);
 
     if (isModal()) {
-      fixScrollContainer(container, params.scrollbarPadding);
+      fixScrollContainer(container, params.scrollbarPadding, initialBodyOverflow);
+      setAriaHidden();
     }
 
     if (!isToast() && !globalState.previousActiveElement) {
@@ -41190,12 +41419,11 @@ module.exports = function (css) {
     }
   };
 
-  var fixScrollContainer = function fixScrollContainer(container, scrollbarPadding) {
+  var fixScrollContainer = function fixScrollContainer(container, scrollbarPadding, initialBodyOverflow) {
     iOSfix();
     IEfix();
-    setAriaHidden();
 
-    if (scrollbarPadding) {
+    if (scrollbarPadding && initialBodyOverflow !== 'hidden') {
       fixScrollbar();
     } // sweetalert2/issues/1247
 
@@ -41220,7 +41448,7 @@ module.exports = function (css) {
   var handleInputOptionsAndValue = function handleInputOptionsAndValue(instance, params) {
     if (params.input === 'select' || params.input === 'radio') {
       handleInputOptions(instance, params);
-    } else if (['text', 'email', 'number', 'tel', 'textarea'].indexOf(params.input) !== -1 && isPromise(params.inputValue)) {
+    } else if (['text', 'email', 'number', 'tel', 'textarea'].indexOf(params.input) !== -1 && (hasToPromiseFn(params.inputValue) || isPromise(params.inputValue))) {
       handleInputValue(instance, params);
     }
   };
@@ -41265,9 +41493,9 @@ module.exports = function (css) {
       return populateInputOptions[params.input](content, formatInputOptions(inputOptions), params);
     };
 
-    if (isPromise(params.inputOptions)) {
+    if (hasToPromiseFn(params.inputOptions) || isPromise(params.inputOptions)) {
       showLoading();
-      params.inputOptions.then(function (inputOptions) {
+      asPromise(params.inputOptions).then(function (inputOptions) {
         instance.hideLoading();
         processInputOptions(inputOptions);
       });
@@ -41281,7 +41509,7 @@ module.exports = function (css) {
   var handleInputValue = function handleInputValue(instance, params) {
     var input = instance.getInput();
     hide(input);
-    params.inputValue.then(function (inputValue) {
+    asPromise(params.inputValue).then(function (inputValue) {
       input.value = params.input === 'number' ? parseFloat(inputValue) || 0 : "".concat(inputValue);
       show(input);
       input.focus();
@@ -41298,9 +41526,8 @@ module.exports = function (css) {
   var populateInputOptions = {
     select: function select(content, inputOptions, params) {
       var select = getChildByClass(content, swalClasses.select);
-      inputOptions.forEach(function (inputOption) {
-        var optionValue = inputOption[0];
-        var optionLabel = inputOption[1];
+
+      var renderOption = function renderOption(parent, optionLabel, optionValue) {
         var option = document.createElement('option');
         option.value = optionValue;
         setInnerHtml(option, optionLabel);
@@ -41309,7 +41536,30 @@ module.exports = function (css) {
           option.selected = true;
         }
 
-        select.appendChild(option);
+        parent.appendChild(option);
+      };
+
+      inputOptions.forEach(function (inputOption) {
+        var optionValue = inputOption[0];
+        var optionLabel = inputOption[1]; // <optgroup> spec:
+        // https://www.w3.org/TR/html401/interact/forms.html#h-17.6
+        // "...all OPTGROUP elements must be specified directly within a SELECT element (i.e., groups may not be nested)..."
+        // check whether this is a <optgroup>
+
+        if (Array.isArray(optionLabel)) {
+          // if it is an array, then it is an <optgroup>
+          var optgroup = document.createElement('optgroup');
+          optgroup.label = optionValue;
+          optgroup.disabled = false; // not configurable for now
+
+          select.appendChild(optgroup);
+          optionLabel.forEach(function (o) {
+            return renderOption(optgroup, o[1], o[0]);
+          });
+        } else {
+          // case of <option>
+          renderOption(select, optionLabel, optionValue);
+        }
       });
       select.focus();
     },
@@ -41352,11 +41602,25 @@ module.exports = function (css) {
 
     if (typeof Map !== 'undefined' && inputOptions instanceof Map) {
       inputOptions.forEach(function (value, key) {
-        result.push([key, value]);
+        var valueFormatted = value;
+
+        if (_typeof(valueFormatted) === 'object') {
+          // case of <optgroup>
+          valueFormatted = formatInputOptions(valueFormatted);
+        }
+
+        result.push([key, valueFormatted]);
       });
     } else {
       Object.keys(inputOptions).forEach(function (key) {
-        result.push([key, inputOptions[key]]);
+        var valueFormatted = inputOptions[key];
+
+        if (_typeof(valueFormatted) === 'object') {
+          // case of <optgroup>
+          valueFormatted = formatInputOptions(valueFormatted);
+        }
+
+        result.push([key, valueFormatted]);
       });
     }
 
@@ -41383,7 +41647,7 @@ module.exports = function (css) {
     if (innerParams.inputValidator) {
       instance.disableInput();
       var validationPromise = Promise.resolve().then(function () {
-        return innerParams.inputValidator(inputValue, innerParams.validationMessage);
+        return asPromise(innerParams.inputValidator(inputValue, innerParams.validationMessage));
       });
       validationPromise.then(function (validationMessage) {
         instance.enableButtons();
@@ -41417,7 +41681,7 @@ module.exports = function (css) {
     if (innerParams.preConfirm) {
       instance.resetValidationMessage();
       var preConfirmPromise = Promise.resolve().then(function () {
-        return innerParams.preConfirm(value, innerParams.validationMessage);
+        return asPromise(innerParams.preConfirm(value, innerParams.validationMessage));
       });
       preConfirmPromise.then(function (preConfirmValue) {
         if (isVisible(getValidationMessage()) || preConfirmValue === false) {
@@ -41949,7 +42213,7 @@ module.exports = function (css) {
     };
   });
   SweetAlert.DismissReason = DismissReason;
-  SweetAlert.version = '9.10.13';
+  SweetAlert.version = '9.17.2';
 
   var Swal = SweetAlert;
   Swal["default"] = Swal;
@@ -41959,387 +42223,6 @@ module.exports = function (css) {
 }));
 if (typeof this !== 'undefined' && this.Sweetalert2){  this.swal = this.sweetAlert = this.Swal = this.SweetAlert = this.Sweetalert2}
 
-
-/***/ }),
-
-/***/ "./node_modules/sweetalert2/dist/sweetalert2.min.css":
-/*!***********************************************************!*\
-  !*** ./node_modules/sweetalert2/dist/sweetalert2.min.css ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./sweetalert2.min.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/sweetalert2/dist/sweetalert2.min.css");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
-/***/ "./node_modules/timers-browserify/main.js":
-/*!************************************************!*\
-  !*** ./node_modules/timers-browserify/main.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
-            (typeof self !== "undefined" && self) ||
-            window;
-var apply = Function.prototype.apply;
-
-// DOM APIs, for completeness
-
-exports.setTimeout = function() {
-  return new Timeout(apply.call(setTimeout, scope, arguments), clearTimeout);
-};
-exports.setInterval = function() {
-  return new Timeout(apply.call(setInterval, scope, arguments), clearInterval);
-};
-exports.clearTimeout =
-exports.clearInterval = function(timeout) {
-  if (timeout) {
-    timeout.close();
-  }
-};
-
-function Timeout(id, clearFn) {
-  this._id = id;
-  this._clearFn = clearFn;
-}
-Timeout.prototype.unref = Timeout.prototype.ref = function() {};
-Timeout.prototype.close = function() {
-  this._clearFn.call(scope, this._id);
-};
-
-// Does not start the time, just sets up the members needed.
-exports.enroll = function(item, msecs) {
-  clearTimeout(item._idleTimeoutId);
-  item._idleTimeout = msecs;
-};
-
-exports.unenroll = function(item) {
-  clearTimeout(item._idleTimeoutId);
-  item._idleTimeout = -1;
-};
-
-exports._unrefActive = exports.active = function(item) {
-  clearTimeout(item._idleTimeoutId);
-
-  var msecs = item._idleTimeout;
-  if (msecs >= 0) {
-    item._idleTimeoutId = setTimeout(function onTimeout() {
-      if (item._onTimeout)
-        item._onTimeout();
-    }, msecs);
-  }
-};
-
-// setimmediate attaches itself to the global object
-__webpack_require__(/*! setimmediate */ "./node_modules/setimmediate/setImmediate.js");
-// On some exotic environments, it's not clear which object `setimmediate` was
-// able to install onto.  Search each possibility in the same order as the
-// `setimmediate` library.
-exports.setImmediate = (typeof self !== "undefined" && self.setImmediate) ||
-                       (typeof global !== "undefined" && global.setImmediate) ||
-                       (this && this.setImmediate);
-exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
-                         (typeof global !== "undefined" && global.clearImmediate) ||
-                         (this && this.clearImmediate);
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EliminarVacante.vue?vue&type=template&id=6513967a&":
-/*!******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/EliminarVacante.vue?vue&type=template&id=6513967a& ***!
-  \******************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "button",
-    {
-      staticClass: "text-red-600 hover:text-red-900  mr-5",
-      on: { click: _vm.eliminarVacante }
-    },
-    [_vm._v("Eliminar")]
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EstadoVacante.vue?vue&type=template&id=98303c56&":
-/*!****************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/EstadoVacante.vue?vue&type=template&id=98303c56& ***!
-  \****************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "span",
-    {
-      key: _vm.estadoVacanteData,
-      staticClass:
-        "px-2 inline-flex text-xs leading-5 font-semibold rounded-full ",
-      class: _vm.claseEstadoVacante(),
-      on: { click: _vm.cambiarEstado }
-    },
-    [_vm._v("\n   " + _vm._s(_vm.estadoVacante) + "\n")]
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ListaSkills.vue?vue&type=template&id=5ad4820a&":
-/*!**************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ListaSkills.vue?vue&type=template&id=5ad4820a& ***!
-  \**************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "ul",
-      { staticClass: "flex flex-wrap justify-center" },
-      _vm._l(this.skills, function(skill, i) {
-        return _c(
-          "li",
-          {
-            key: i,
-            staticClass: "border border-gray-500 px-10 py-3 mb-3 rounded mr-4",
-            class: _vm.verificarClaseActiva(skill),
-            on: {
-              click: function($event) {
-                return _vm.activar($event)
-              }
-            }
-          },
-          [_vm._v(_vm._s(skill))]
-        )
-      }),
-      0
-    ),
-    _vm._v(" "),
-    _c("input", { attrs: { type: "hidden", name: "skills", id: "skills" } })
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
-  \********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-function normalizeComponent (
-  scriptExports,
-  render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier, /* server only */
-  shadowMode /* vue-cli only */
-) {
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (render) {
-    options.render = render
-    options.staticRenderFns = staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = 'data-v-' + scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () {
-        injectStyles.call(
-          this,
-          (options.functional ? this.parent : this).$root.$options.shadowRoot
-        )
-      }
-      : injectStyles
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functional component in vue file
-      var originalRender = options.render
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return originalRender(h, context)
-      }
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    }
-  }
-
-  return {
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-sweetalert2/dist/index.js":
-/*!****************************************************!*\
-  !*** ./node_modules/vue-sweetalert2/dist/index.js ***!
-  \****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
-/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0__);
-
-var VueSweetalert2 = (function () {
-    function VueSweetalert2() {
-    }
-    VueSweetalert2.install = function (vue, options) {
-        var swalLocalInstance = options ? sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0___default.a.mixin(options) : sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0___default.a;
-        var swalFunction = function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
-            }
-            return swalLocalInstance.fire.apply(swalLocalInstance, args);
-        };
-        var methodName;
-        for (methodName in swalLocalInstance) {
-            if (Object.prototype.hasOwnProperty.call(swalLocalInstance, methodName) &&
-                typeof swalLocalInstance[methodName] === 'function') {
-                swalFunction[methodName] = (function (method) {
-                    return function () {
-                        var args = [];
-                        for (var _i = 0; _i < arguments.length; _i++) {
-                            args[_i] = arguments[_i];
-                        }
-                        return swalLocalInstance[method].apply(swalLocalInstance, args);
-                    };
-                })(methodName);
-            }
-        }
-        vue['swal'] = swalFunction;
-        if (!vue.prototype.hasOwnProperty('$swal')) {
-            vue.prototype.$swal = swalFunction;
-        }
-    };
-    return VueSweetalert2;
-}());
-/* harmony default export */ __webpack_exports__["default"] = (VueSweetalert2);
-//# sourceMappingURL=index.js.map
 
 /***/ }),
 
@@ -54428,9 +54311,9 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.use(vue_sweetalert2__WEBPACK_IMPORTED_MODULE_0__["default"]);
-Vue.component('lista-skills', __webpack_require__(/*! ./components/ListaSkills.vue */ "./resources/js/components/ListaSkills.vue")["default"]);
-Vue.component('estado-vacante', __webpack_require__(/*! ./components/EstadoVacante.vue */ "./resources/js/components/EstadoVacante.vue")["default"]);
-Vue.component('eliminar-vacante', __webpack_require__(/*! ./components/EliminarVacante.vue */ "./resources/js/components/EliminarVacante.vue")["default"]);
+Vue.component('lista-skills', __webpack_require__(/*! ./components/ListaSkills.vue */ "./resources/js/components/ListaSkills.vue")["default"]); // Vue.component('estado-vacante', require('./components/EstadoVacante.vue').default);
+// Vue.component('eliminar-vacante', require('./components/EliminarVacante.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -54486,144 +54369,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: true
 // });
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
-
-/***/ }),
-
-/***/ "./resources/js/components/EliminarVacante.vue":
-/*!*****************************************************!*\
-  !*** ./resources/js/components/EliminarVacante.vue ***!
-  \*****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _EliminarVacante_vue_vue_type_template_id_6513967a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EliminarVacante.vue?vue&type=template&id=6513967a& */ "./resources/js/components/EliminarVacante.vue?vue&type=template&id=6513967a&");
-/* harmony import */ var _EliminarVacante_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EliminarVacante.vue?vue&type=script&lang=js& */ "./resources/js/components/EliminarVacante.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _EliminarVacante_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _EliminarVacante_vue_vue_type_template_id_6513967a___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _EliminarVacante_vue_vue_type_template_id_6513967a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/EliminarVacante.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/EliminarVacante.vue?vue&type=script&lang=js&":
-/*!******************************************************************************!*\
-  !*** ./resources/js/components/EliminarVacante.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EliminarVacante_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./EliminarVacante.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EliminarVacante.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EliminarVacante_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/EliminarVacante.vue?vue&type=template&id=6513967a&":
-/*!************************************************************************************!*\
-  !*** ./resources/js/components/EliminarVacante.vue?vue&type=template&id=6513967a& ***!
-  \************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EliminarVacante_vue_vue_type_template_id_6513967a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./EliminarVacante.vue?vue&type=template&id=6513967a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EliminarVacante.vue?vue&type=template&id=6513967a&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EliminarVacante_vue_vue_type_template_id_6513967a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EliminarVacante_vue_vue_type_template_id_6513967a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/EstadoVacante.vue":
-/*!***************************************************!*\
-  !*** ./resources/js/components/EstadoVacante.vue ***!
-  \***************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _EstadoVacante_vue_vue_type_template_id_98303c56___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EstadoVacante.vue?vue&type=template&id=98303c56& */ "./resources/js/components/EstadoVacante.vue?vue&type=template&id=98303c56&");
-/* harmony import */ var _EstadoVacante_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EstadoVacante.vue?vue&type=script&lang=js& */ "./resources/js/components/EstadoVacante.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _EstadoVacante_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _EstadoVacante_vue_vue_type_template_id_98303c56___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _EstadoVacante_vue_vue_type_template_id_98303c56___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/EstadoVacante.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/EstadoVacante.vue?vue&type=script&lang=js&":
-/*!****************************************************************************!*\
-  !*** ./resources/js/components/EstadoVacante.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EstadoVacante_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./EstadoVacante.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EstadoVacante.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EstadoVacante_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/EstadoVacante.vue?vue&type=template&id=98303c56&":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/components/EstadoVacante.vue?vue&type=template&id=98303c56& ***!
-  \**********************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EstadoVacante_vue_vue_type_template_id_98303c56___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./EstadoVacante.vue?vue&type=template&id=98303c56& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EstadoVacante.vue?vue&type=template&id=98303c56&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EstadoVacante_vue_vue_type_template_id_98303c56___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EstadoVacante_vue_vue_type_template_id_98303c56___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
 
 /***/ }),
 
@@ -54707,15 +54452,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/sass/eliminar-vacante.scss":
+/*!**********************************************!*\
+  !*** ./resources/sass/eliminar-vacante.scss ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/sass/estado-vacante.scss":
+/*!********************************************!*\
+  !*** ./resources/sass/estado-vacante.scss ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/sass/lista-skills.scss":
+/*!******************************************!*\
+  !*** ./resources/sass/lista-skills.scss ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/sass/lista-vacantes-datatable.scss":
+/*!******************************************************!*\
+  !*** ./resources/sass/lista-vacantes-datatable.scss ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/sass/menu.scss":
+/*!**********************************!*\
+  !*** ./resources/sass/menu.scss ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/menu.scss ./resources/sass/estado-vacante.scss ./resources/sass/eliminar-vacante.scss ./resources/sass/lista-skills.scss ./resources/sass/lista-vacantes-datatable.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\Users\pedro\Desktop\DevProjects\LaravelProjects\6.juan-de-la-torre\curso-laravel-crea-aplicaciones-y-sitios-web-con-php-y-mvc\004 devjobs\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\pedro\Desktop\DevProjects\LaravelProjects\6.juan-de-la-torre\curso-laravel-crea-aplicaciones-y-sitios-web-con-php-y-mvc\004 devjobs\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\pedro\Desktop\DevProjects\LaravelProjects\6.juan-de-la-torre\curso-laravel-crea-aplicaciones-y-sitios-web-con-php-y-mvc\004 devjobs\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\pedro\Desktop\DevProjects\LaravelProjects\6.juan-de-la-torre\curso-laravel-crea-aplicaciones-y-sitios-web-con-php-y-mvc\004 devjobs\resources\sass\menu.scss */"./resources/sass/menu.scss");
+__webpack_require__(/*! C:\Users\pedro\Desktop\DevProjects\LaravelProjects\6.juan-de-la-torre\curso-laravel-crea-aplicaciones-y-sitios-web-con-php-y-mvc\004 devjobs\resources\sass\estado-vacante.scss */"./resources/sass/estado-vacante.scss");
+__webpack_require__(/*! C:\Users\pedro\Desktop\DevProjects\LaravelProjects\6.juan-de-la-torre\curso-laravel-crea-aplicaciones-y-sitios-web-con-php-y-mvc\004 devjobs\resources\sass\eliminar-vacante.scss */"./resources/sass/eliminar-vacante.scss");
+__webpack_require__(/*! C:\Users\pedro\Desktop\DevProjects\LaravelProjects\6.juan-de-la-torre\curso-laravel-crea-aplicaciones-y-sitios-web-con-php-y-mvc\004 devjobs\resources\sass\lista-skills.scss */"./resources/sass/lista-skills.scss");
+module.exports = __webpack_require__(/*! C:\Users\pedro\Desktop\DevProjects\LaravelProjects\6.juan-de-la-torre\curso-laravel-crea-aplicaciones-y-sitios-web-con-php-y-mvc\004 devjobs\resources\sass\lista-vacantes-datatable.scss */"./resources/sass/lista-vacantes-datatable.scss");
 
 
 /***/ })

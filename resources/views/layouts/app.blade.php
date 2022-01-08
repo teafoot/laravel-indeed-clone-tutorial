@@ -9,17 +9,14 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
     @yield('styles')
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/menu.css') }}" rel="stylesheet">
 </head>
 <body class="bg-gray-200 min-h-screen leading-none">
 
@@ -44,7 +41,9 @@
                                     <a class="text-white no-underline hover:underline hover:text-gray-300 p-3" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 @endif
                             @else
-                                    <span class="text-gray-300 text-sm pr-4"> {{ Auth::user()->name }}  </span>
+                                    <a
+                                        href="{{ route('vacantes.index') }}"
+                                    > <span class="text-gray-300 text-sm pr-4"> {{ Auth::user()->name }}  </span> </a>
 
                                     {{-- Notificaciones --}}
                                     <a
@@ -69,7 +68,8 @@
 
         {{-- para mostrar menu categorias --}}
         <div class="bg-gray-700">
-            <nav class="container mx-auto flex flex-col text-center md:flex-row  space-x-1">
+            {{-- <nav class="container mx-auto flex flex-col text-center md:flex-row  space-x-1"> --}}
+            <nav class="mx-auto text-center space-x-1">
                 @yield('navegacion')
             </nav>
         </div>
@@ -80,5 +80,8 @@
     </div>
 
     @yield('scripts')
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/menu.js') }}" defer></script>
 </body>
 </html>
